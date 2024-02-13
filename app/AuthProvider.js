@@ -1,7 +1,7 @@
-import {Provider, useDispatch, useSelector} from "react-redux";
-import { store } from '../src/features/store';
+
 import {useEffect} from "react";
 import {useRouter, useSegments} from "expo-router";
+import {useDispatch, useSelector} from "react-redux";
 
 
 
@@ -11,19 +11,26 @@ import {useRouter, useSegments} from "expo-router";
 const AuthProvider = ({children}) => {
 
 
+    const {login} = useSelector((state) => state.login);
+    const dispatch = useDispatch();
+
+
     const segments = useSegments();
     const router = useRouter();
 
-    useEffect(() => {
+    const useAuth = () => {
+        return false
+    }
 
-        router.replace("/login");
-    }, [segments])
+    useEffect(() => {
+        return login ? router.replace("/home") : router.replace("/login");
+    }, [login])
 
 
     return (
-        <Provider store={store}>
+        <>
             {children}
-        </Provider>
+        </>
     );
 };
 

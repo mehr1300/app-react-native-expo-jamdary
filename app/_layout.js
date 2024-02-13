@@ -1,5 +1,7 @@
-import { Stack } from 'expo-router';
+import {Stack} from 'expo-router';
 import AuthProvider from "./AuthProvider";
+import {Provider, useDispatch, useSelector} from "react-redux";
+import { store } from '../src/features/store';
 
 export default function HomeLayout() {
     return (
@@ -17,15 +19,16 @@ export default function HomeLayout() {
         //     <Stack.Screen name="authProvider" options={{headerShown : false}}/>
         //
         // </Stack>
-
-        <AuthProvider>
-            <Stack>
-                <Stack.Screen name="(tabs)" options={{
+        <Provider store={store}>
+            <AuthProvider>
+                <Stack>
+                    <Stack.Screen name="(tabs)" options={{
                         headerShown: false,
                     }}
-                />
-            </Stack>
-        </AuthProvider>
+                    />
+                </Stack>
+            </AuthProvider>
+        </Provider>
 
     )
 
