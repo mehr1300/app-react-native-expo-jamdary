@@ -11,8 +11,8 @@ app.interceptors.response.use(
     (err) => {
         if (err.response.status === 401) {
             const currentURL = window.location.href;
-            if (!currentURL.endsWith("/login")) {
-                return window.location.href = "/login"
+            if (!currentURL.endsWith("/(auth)/login")) {
+                return window.location.href = "/(auth)/login"
             }
         }
         return Promise.reject(err);
