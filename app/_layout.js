@@ -21,12 +21,8 @@ export default function HomeLayout() {
         // </Stack>
         <Provider store={store}>
             <AuthProvider>
-                <Stack>
-                    <Stack.Screen name="(tabs)" options={{
-                        headerShown: false,
-                    }}
-                    />
-                </Stack>
+                <Stack/>
+
             </AuthProvider>
         </Provider>
 
