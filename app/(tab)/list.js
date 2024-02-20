@@ -4,7 +4,7 @@ import TextCustom from "../../src/components/Text/TextCustom";
 import {useDispatch, useSelector} from "react-redux";
 import {getAsyncProductList} from "../../src/features/redux/productSlice";
 import ScrollViewCustom from "../../src/components/ScrollView/ScrollViewCustom";
-import {FlatList, SafeAreaView} from "react-native";
+import {SafeAreaView} from "react-native";
 
 const list = () => {
 
@@ -26,18 +26,18 @@ const list = () => {
                 {productList && productList.length > 0 && productList.map((value, index) => {
                     return (
                         <ViewCustom key={value.product_code} className="bg-gray-200 p-4 border border-gray-400 rounded mb-4 ">
-                            <ViewCustom key={index} className="flwe flex-row justify-between items-center p-1 border-b border-gray-400">
+                            <ViewCustom  className="flwe flex-row justify-between items-center p-1 border-b border-gray-400">
                                 <TextCustom className="text-slate-800 flex">{value.product_code}</TextCustom>
                                 <TextCustom className="text-slate-800 flex text-lg">
                                     {value.product_name}
                                 </TextCustom>
                             </ViewCustom>
 
-                            <ViewCustom key={index} className=" pt-2">
+                            <ViewCustom className=" pt-2">
 
                                 <TextCustom className="text-slate-800 flex">{value.organization_title}</TextCustom>
 
-                                <ViewCustom key={index} className=" pt-2">
+                                <ViewCustom  className=" pt-2">
                                     <TextCustom className="text-slate-800 flex">
                                         <TextCustom className="text-gray-600"> گروه :</TextCustom>
                                         <TextCustom>{value.product_group_title}</TextCustom>
@@ -58,6 +58,8 @@ const list = () => {
                     )
                 })}
             </ScrollViewCustom>
+
+
         </SafeAreaView>
     );
 }

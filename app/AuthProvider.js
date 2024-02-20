@@ -24,7 +24,7 @@ const AuthProvider = ({children}) => {
 
     useEffect(() => {
         // return login ? router.replace("/home") : router.replace("/login");
-        router.replace("/home")
+        router.replace("/login")
     }, [])
 
 
