@@ -1,10 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import ViewCustom from "../../src/components/View/ViewCustom";
 import TextCustom from "../../src/components/Text/TextCustom";
 import {useDispatch, useSelector} from "react-redux";
 import {getAsyncProductList} from "../../src/features/redux/productSlice";
-import ScrollViewCustom from "../../src/components/ScrollView/ScrollViewCustom";
-import {SafeAreaView} from "react-native";
+import {SafeAreaView, ScrollView, View} from "react-native";
+import {Link, useRouter} from "expo-router";
 
 const list = () => {
 
@@ -13,31 +12,36 @@ const list = () => {
 
     const [perPage, setPerPage] = useState(50)
     const [numberPage, setNumberPage] = useState(1)
+    const router = useRouter();
+
 
     useEffect(() => {
         dispatch(getAsyncProductList({row_per_page: parseInt(perPage), page_number: parseInt(numberPage)}))
 
     }, [perPage, numberPage])
 
+    const test = () => {
+        console.log("asdasdas")
+    }
 
     return (
         <SafeAreaView>
-            <ScrollViewCustom className="p-4 ">
+            <ScrollView className="p-4">
                 {productList && productList.length > 0 && productList.map((value, index) => {
                     return (
-                        <ViewCustom key={value.product_code} className="bg-gray-200 p-4 border border-gray-400 rounded mb-4 ">
-                            <ViewCustom  className="flwe flex-row justify-between items-center p-1 border-b border-gray-400">
+                        <View key={value.product_code} className={` ${index % 2 === 0 ? "bg-sky-600/10" : "bg-green-600/10"} p-4 border border-gray-400 rounded mb-4 `}>
+                            <View  className={`flex flex-row justify-between items-center p-1 pb-1.5 border-b-[1.5px] border-dashed ${index % 2 === 0 ? "border-sky-700" : "border-green-700"}`}>
                                 <TextCustom className="text-slate-800 flex">{value.product_code}</TextCustom>
-                                <TextCustom className="text-slate-800 flex text-lg">
+                                <TextCustom className={`text-slate-800 text-lg ${index % 2 === 0 ? "text-sky-600" : "text-green-600"} `}>
                                     {value.product_name}
                                 </TextCustom>
-                            </ViewCustom>
+                            </View>
 
-                            <ViewCustom className=" pt-2">
+                            <View className=" pt-2">
 
                                 <TextCustom className="text-slate-800 flex">{value.organization_title}</TextCustom>
 
-                                <ViewCustom  className=" pt-2">
+                                <View className=" pt-2">
                                     <TextCustom className="text-slate-800 flex">
                                         <TextCustom className="text-gray-600"> گروه :</TextCustom>
                                         <TextCustom>{value.product_group_title}</TextCustom>
@@ -50,14 +54,22 @@ const list = () => {
                                         <TextCustom className="text-gray-600">وضعیت :</TextCustom>
                                         <TextCustom>{value.product_status_title}</TextCustom>
                                     </TextCustom>
-                                </ViewCustom>
-                            </ViewCustom>
+                                </View>
+                            </View>
 
+                           <View className="flex flex-row items-center w-full mt-2 space-x-2.5">
+                               <Link className="w-1/2 text-center rounded-full py-2 px-4 bg-sky-600 text-white border-r-8 border-sky-700" href="(form)/addProduct">
+                                   <TextCustom>مشاهده</TextCustom>
+                               </Link>
+                               <Link className="w-1/2 text-center rounded-full py-2 px-4 bg-green-700 text-white border-r-8 border-green-600" href="(form)/addProduct">
+                                   <TextCustom>ویرایش</TextCustom>
+                               </Link>
+                           </View>
 
-                        </ViewCustom>
+                        </View>
                     )
                 })}
-            </ScrollViewCustom>
+            </ScrollView>
 
 
         </SafeAreaView>
