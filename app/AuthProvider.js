@@ -1,6 +1,7 @@
 
 import {useEffect} from "react";
 import {useRouter} from "expo-router";
+import {useSelector} from "react-redux";
 
 
 
@@ -11,7 +12,7 @@ import {useRouter} from "expo-router";
 const AuthProvider = ({children}) => {
 
 
-    // const {login} = useSelector((state) => state.login);
+    const {isLogin} = useSelector((state) => state.login);
     // const dispatch = useDispatch();
     //
     //
@@ -23,8 +24,7 @@ const AuthProvider = ({children}) => {
     // }
 
     useEffect(() => {
-        // return login ? router.replace("/home") : router.replace("/login");
-        router.replace("/(auth)/login")
+        return isLogin ? router.replace("/(tab)/home") : router.replace("/(auth)/login");
     }, [])
 
 

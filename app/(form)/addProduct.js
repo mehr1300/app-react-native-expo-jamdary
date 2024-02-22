@@ -71,7 +71,7 @@ const addProduct = () => {
                                 </View>
                                 <View>
                                     <TextCustom>وضعیت کالا</TextCustom>
-                                    <SelectOption  title="وضغیت کالا" option={statusListSelect}/>
+                                    <SelectOption  title="وضعیت کالا" option={statusListSelect}/>
                                 </View>
                                 <View>
                                     <TextCustom>نام</TextCustom>
