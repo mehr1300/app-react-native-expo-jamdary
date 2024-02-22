@@ -1,6 +1,6 @@
 import React from 'react';
-import ViewCustom from "../../src/components/View/ViewCustom";
-import TextCustom from "../../src/components/Text/TextCustom";
+import ViewCustom from "../../../src/components/View/ViewCustom";
+import TextCustom from "../../../src/components/Text/TextCustom";
 
 const qrcode = () => {
 

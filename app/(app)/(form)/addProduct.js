@@ -1,16 +1,13 @@
 import React, {useEffect} from 'react';
 import {router, useLocalSearchParams} from "expo-router";
-import ViewCustom from "../../src/components/View/ViewCustom";
-import TextInputCustom from "../../src/components/TextInput/TextInputCustom";
-import TextCustom from "../../src/components/Text/TextCustom";
+import TextCustom from "../../../src/components/Text/TextCustom";
 import {useDispatch, useSelector} from "react-redux";
-import {clearLogin, loginUser, postAsyncLogin} from "../../src/features/redux/loginSlice";
+import {clearLogin, loginUser, postAsyncLogin} from "../../../src/features/redux/loginSlice";
 import {Formik} from "formik";
 import {Button, Modal, SafeAreaView, ScrollView, TextInput, View} from "react-native";
-import SelectDropdown from 'react-native-select-dropdown'
-import {getAsyncGroupListSelect} from "../../src/features/redux/groupSlice";
-import {getAsyncStatusSelect} from "../../src/features/redux/statusSlice";
-import SelectOption from "../../src/components/SelectOption/SelectOption";
+import {getAsyncGroupListSelect} from "../../../src/features/redux/groupSlice";
+import {getAsyncStatusSelect} from "../../../src/features/redux/statusSlice";
+import SelectOption from "../../../src/components/SelectOption/SelectOption";
 
 
 const addProduct = () => {
@@ -26,7 +23,7 @@ const addProduct = () => {
     const text = () => {
         dispatch(loginUser())
         console.log(login)
-        return router.push("/home")
+        return router.push("/index")
     }
 
     const onSubmit = (values) => {
@@ -47,7 +44,7 @@ const addProduct = () => {
 
 
     return (
-        // <Redirect href="/home"/>
+        // <Redirect href="/index"/>
         <SafeAreaView>
             <ScrollView className="p-4">
 

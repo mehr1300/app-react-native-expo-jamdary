@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import TextCustom from "../../src/components/Text/TextCustom";
+import TextCustom from "../../../src/components/Text/TextCustom";
 import {useDispatch, useSelector} from "react-redux";
-import {getAsyncProductList} from "../../src/features/redux/productSlice";
+import {getAsyncProductList} from "../../../src/features/redux/productSlice";
 import {SafeAreaView, ScrollView, View} from "react-native";
 import {Link, useRouter} from "expo-router";
 

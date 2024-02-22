@@ -1,10 +1,9 @@
 import React, {useEffect} from 'react';
 import {router} from "expo-router";
-import ViewCustom from "../../src/components/View/ViewCustom";
-import TextInputCustom from "../../src/components/TextInput/TextInputCustom";
-import TextCustom from "../../src/components/Text/TextCustom";
+import ViewCustom from "../../../src/components/View/ViewCustom";
+import TextInputCustom from "../../../src/components/TextInput/TextInputCustom";
 import {useDispatch, useSelector} from "react-redux";
-import {clearLogin, loginUser, postAsyncLogin} from "../../src/features/redux/loginSlice";
+import {clearLogin, loginUser, postAsyncLogin} from "../../../src/features/redux/loginSlice";
 
 
 const showProduct = () => {
@@ -15,7 +14,7 @@ const showProduct = () => {
     const text = () => {
         dispatch(loginUser())
         console.log(login)
-        return router.push("/home")
+        return router.push("/index")
     }
 
     const onSubmit = (values) => {
@@ -37,7 +36,7 @@ const showProduct = () => {
     }, [login])
 
     return (
-        // <Redirect href="/home"/>
+        // <Redirect href="/index"/>
         <ViewCustom className="bg-gray-200  flex-1 items-center justify-center w-full p-10 space-y-8">
             <TextInputCustom className="border border-gray-400 w-full p-1.5 rounded"/>
 

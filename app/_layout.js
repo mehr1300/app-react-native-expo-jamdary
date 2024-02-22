@@ -1,9 +1,8 @@
-import {Stack} from 'expo-router';
-import AuthProvider from "./AuthProvider";
-import {Provider, useDispatch, useSelector} from "react-redux";
+import {Slot} from 'expo-router';
+import {Provider} from "react-redux";
 import {store} from '../src/features/store';
 
-export default function HomeLayout() {
+export default function Root() {
     return (
 
         // <Stack screenOptions ={{
@@ -20,10 +19,7 @@ export default function HomeLayout() {
         //
         // </Stack>
         <Provider store={store}>
-            <AuthProvider>
-                <Stack/>
-
-            </AuthProvider>
+            <Slot />
         </Provider>
 
     )

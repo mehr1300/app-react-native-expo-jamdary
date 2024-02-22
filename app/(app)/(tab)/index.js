@@ -1,11 +1,11 @@
 import React from 'react';
-import ViewCustom from "../../src/components/View/ViewCustom";
-import TextCustom from "../../src/components/Text/TextCustom";
+import ViewCustom from "../../../src/components/View/ViewCustom";
+import TextCustom from "../../../src/components/Text/TextCustom";
 
 
 
 
-const home = () => {
+const index = () => {
 
     // const {value, status} = useSelector((state) => state.counter);
     // const dispatch = useDispatch();
@@ -22,6 +22,6 @@ const home = () => {
     );
 }
 
-export default home;
+export default index;
 
 

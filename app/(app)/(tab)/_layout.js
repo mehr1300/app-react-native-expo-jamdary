@@ -4,23 +4,23 @@ import {useEffect} from "react";
 
 export default function HomeLayout() {
 
-    const {islogin} = useSelector((state) => state.login);
+    const {isLogin} = useSelector((state) => state.login);
     const dispatch = useDispatch();
     const router = useRouter();
 
     const segments = useSegments();
 
     useEffect(() => {
-        if(!islogin){
+        if(!isLogin){
             return router.replace("/login")
         }
-    }, [islogin,segments])
+    }, [isLogin,segments])
 
 
     return (
 
-        <Tabs>
-            <Tabs.Screen name="home" options={{title: "صفحه اصلی"}} />
+        <Tabs >
+            <Tabs.Screen name="index"  options={{title: "صفحه اصلی"}} />
             <Tabs.Screen name="list" options={{title: "کالاها"}} />
             <Tabs.Screen name="barcode" options={{title: "بارکد"}}/>
             <Tabs.Screen name="qrcode" options={{title: "دوربین"}}/>
@@ -29,3 +29,5 @@ export default function HomeLayout() {
     )
 
 }
+
+// options={{headerShown: false}}

@@ -1,19 +1,16 @@
 import React, {useEffect} from 'react';
 import {router} from "expo-router";
-import TextInputCustom from "../../src/components/TextInput/TextInputCustom";
-import TextCustom from "../../src/components/Text/TextCustom";
+import TextCustom from "../src/components/Text/TextCustom";
 import {useDispatch, useSelector} from "react-redux";
-import {clearLogin, loginUser, postAsyncLogin} from "../../src/features/redux/loginSlice";
-import {Pressable, TextInput, View, Image, Button, ToastAndroid} from "react-native";
-import {AntDesign} from '@expo/vector-icons';
-import {getAsyncSettingIndex} from "../../src/features/redux/settingSlice";
-import {Config} from "../../src/config/Config";
+import {clearLogin, loginUser, postAsyncLogin} from "../src/features/redux/loginSlice";
+import {TextInput, View, Image, Button, ToastAndroid} from "react-native";
+import {getAsyncSettingIndex} from "../src/features/redux/settingSlice";
+import {Config} from "../src/config/Config";
 import {Formik} from "formik";
-import {Toast} from "expo-router/build/views/Toast";
-import SelectOption from "../../src/components/SelectOption/SelectOption";
 
 
-const login = () => {
+
+export default function login() {
 
     const {login, loading} = useSelector((state) => state.login);
     const {index} = useSelector(state => state.setting)
@@ -21,7 +18,8 @@ const login = () => {
 
     const text = () => {
         dispatch(loginUser())
-        return router.push("/home")
+        // return router.push("/index")
+        router.replace('/');
     }
 
     useEffect(() => {
@@ -44,7 +42,7 @@ const login = () => {
         console.log(login.data)
         if (login.status !== undefined) {
             if (login.status === 200) {
-                router.replace("/(tab)/list")
+                router.replace('/');
                 dispatch(loginUser())
                 dispatch(clearLogin())
             } else {
@@ -63,7 +61,7 @@ const login = () => {
 
 
     return (
-        // <Redirect href="/home"/>
+        // <Redirect href="/index"/>
         <View className="bg-gray-200  flex-1 items-center justify-center w-full p-10 space-y-4">
             <Image className="w-32 h-32" source={{uri: `${Config.imageUrl + index?.login_logo_app}`}}/>
             <TextCustom className="text-slate-800 flex text-3xl">نرم افزار جمع داری</TextCustom>
@@ -98,7 +96,6 @@ const login = () => {
 
             <View className="w-full justify-center items-center pt-10">
                 <TextCustom className="text-slate-800 flex text-sm">
-                    v
                     {Config.version}
                 </TextCustom>
             </View>
@@ -107,7 +104,6 @@ const login = () => {
     );
 }
 
-export default login;
 
 
 {/*<Pressable className="w-full bg-blue-500 rounded p-2 justify-center items-center">*/}

@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import ViewCustom from "../../src/components/View/ViewCustom";
-import TextCustom from "../../src/components/Text/TextCustom";
-import TextInputCustom from "../../src/components/TextInput/TextInputCustom";
+import ViewCustom from "../../../src/components/View/ViewCustom";
+import TextCustom from "../../../src/components/Text/TextCustom";
+import TextInputCustom from "../../../src/components/TextInput/TextInputCustom";
 import {useDispatch, useSelector} from "react-redux";
-import {clearResultProduct, clearTypeProduct, searchAsyncProduct} from "../../src/features/redux/productSlice";
+import {clearResultProduct, clearTypeProduct, searchAsyncProduct} from "../../../src/features/redux/productSlice";
 import {useSegments} from "expo-router";
 
 const barcode = () => {
