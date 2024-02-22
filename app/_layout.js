@@ -1,7 +1,7 @@
 import {Stack} from 'expo-router';
 import AuthProvider from "./AuthProvider";
 import {Provider, useDispatch, useSelector} from "react-redux";
-import { store } from '../src/features/store';
+import {store} from '../src/features/store';
 
 export default function HomeLayout() {
     return (

@@ -58,7 +58,10 @@ const list = () => {
                             </View>
 
                            <View className="flex flex-row items-center w-full mt-2 space-x-2.5">
-                               <Link className="w-1/2 text-center rounded-full py-2 px-4 bg-sky-600 text-white border-r-8 border-sky-700" href="(form)/addProduct">
+                               <Link className="w-1/2 text-center rounded-full py-2 px-4 bg-sky-600 text-white border-r-8 border-sky-700" href={{
+                                   pathname: "(form)/addProduct",
+                                   params: { id: value.product_id }
+                               }}>
                                    <TextCustom>مشاهده</TextCustom>
                                </Link>
                                <Link className="w-1/2 text-center rounded-full py-2 px-4 bg-green-700 text-white border-r-8 border-green-600" href="(form)/addProduct">
@@ -70,6 +73,7 @@ const list = () => {
                     )
                 })}
             </ScrollView>
+
 
 
         </SafeAreaView>

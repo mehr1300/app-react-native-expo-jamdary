@@ -19,6 +19,7 @@ export const loginSlice = createSlice({
     initialState: {
         login: false,
         islogin: false,
+        loading : false
     },
     reducers: {
         clearLogin: (state) => {
