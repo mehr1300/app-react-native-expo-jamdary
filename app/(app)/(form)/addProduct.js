@@ -18,7 +18,7 @@ const addProduct = () => {
 
     const dispatch = useDispatch();
 
-    const {id} = useLocalSearchParams()
+    const {product_id, product_code} = useLocalSearchParams()
 
     const text = () => {
         dispatch(loginUser())
@@ -39,21 +39,31 @@ const addProduct = () => {
     }, [])
 
 
-
     const countries = ["Egypt", "Canada", "Australia", "Ireland"]
 
 
     return (
         // <Redirect href="/index"/>
         <SafeAreaView>
-            <ScrollView className="p-4">
+            <ScrollView className="p-5 py-6">
+                <View className="h-10"></View>
 
-
-                <Formik initialValues={{product_name: "mehr", password: "123456"}}
+                <Formik initialValues=
+                            {{
+                                product_id: product_id,
+                                product_code: product_code,
+                                product_name: "123456",
+                            }}
                         onSubmit={values => console.log(values)}>
                     {({handleChange, handleBlur, handleSubmit, values}) => (
                         <View className="w-full flex flex-col space-y-5">
                             <View className="w-full flex flex-col space-y-3">
+                                <View  className="flex justify-center items-center bg-gray-400 rounded p-2 w-full">
+                                    <TextCustom className="text-white text-2xl">
+                                        کد :
+                                        {values.product_code}
+                                    </TextCustom>
+                                </View>
                                 <View>
                                     <TextCustom>نام</TextCustom>
                                     <TextInput name="product_name" placeholder="نام کالا"
@@ -64,11 +74,11 @@ const addProduct = () => {
                                 </View>
                                 <View>
                                     <TextCustom>گروه کالا</TextCustom>
-                                    <SelectOption  title="گروه کالا" option={groupListSelect}/>
+                                    <SelectOption title="گروه کالا" option={groupListSelect}/>
                                 </View>
                                 <View>
                                     <TextCustom>وضعیت کالا</TextCustom>
-                                    <SelectOption  title="وضعیت کالا" option={statusListSelect}/>
+                                    <SelectOption title="وضعیت کالا" option={statusListSelect}/>
                                 </View>
                                 <View>
                                     <TextCustom>نام</TextCustom>

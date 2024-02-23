@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import TextCustom from "../../../src/components/Text/TextCustom";
 import {useDispatch, useSelector} from "react-redux";
 import {getAsyncProductList} from "../../../src/features/redux/productSlice";
-import {SafeAreaView, ScrollView, View} from "react-native";
+import {ActivityIndicator, SafeAreaView, ScrollView, View} from "react-native";
 import {Link, useRouter} from "expo-router";
 
 const list = () => {
@@ -27,6 +27,9 @@ const list = () => {
     return (
         <SafeAreaView>
             <ScrollView className="p-4">
+                <View>
+                    <ActivityIndicator size="large" color="#0000ff" />
+                </View>
                 {productList && productList.length > 0 && productList.map((value, index) => {
                     return (
                         <View key={value.product_code} className={` ${index % 2 === 0 ? "bg-sky-600/10" : "bg-green-600/10"} p-4 border border-gray-400 rounded mb-4 `}>
@@ -60,7 +63,7 @@ const list = () => {
                            <View className="flex flex-row items-center w-full mt-2 space-x-2.5">
                                <Link className="w-1/2 text-center rounded-full py-2 px-4 bg-sky-600 text-white border-r-8 border-sky-700" href={{
                                    pathname: "(form)/addProduct",
-                                   params: { id: value.product_id }
+                                   params: { product_id: value.product_id,product_code: value.product_code }
                                }}>
                                    <TextCustom>مشاهده</TextCustom>
                                </Link>
