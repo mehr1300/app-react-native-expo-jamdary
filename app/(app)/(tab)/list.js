@@ -2,8 +2,9 @@ import React, {useEffect, useState} from 'react';
 import TextCustom from "../../../src/components/Text/TextCustom";
 import {useDispatch, useSelector} from "react-redux";
 import {getAsyncProductList} from "../../../src/features/redux/productSlice";
-import {ActivityIndicator, SafeAreaView, ScrollView, View} from "react-native";
+import {Text, SafeAreaView, ScrollView, View} from "react-native";
 import {Link, useRouter} from "expo-router";
+import LoadingOne from "../../../src/components/Animation/LoadingOne";
 
 const list = () => {
 
@@ -24,12 +25,14 @@ const list = () => {
         console.log("asdasdas")
     }
 
+    if(loadingList){
+        return(<LoadingOne/>)
+    }
+
     return (
         <SafeAreaView>
             <ScrollView className="p-4">
-                <View>
-                    <ActivityIndicator size="large" color="#0000ff" />
-                </View>
+
                 {productList && productList.length > 0 && productList.map((value, index) => {
                     return (
                         <View key={value.product_code} className={` ${index % 2 === 0 ? "bg-sky-600/10" : "bg-green-600/10"} p-4 border border-gray-400 rounded mb-4 `}>
@@ -76,8 +79,6 @@ const list = () => {
                     )
                 })}
             </ScrollView>
-
-
 
         </SafeAreaView>
     );

@@ -8,6 +8,7 @@ import {Button, Modal, SafeAreaView, ScrollView, TextInput, View} from "react-na
 import {getAsyncGroupListSelect} from "../../../src/features/redux/groupSlice";
 import {getAsyncStatusSelect} from "../../../src/features/redux/statusSlice";
 import SelectOption from "../../../src/components/SelectOption/SelectOption";
+import TextInputCustom from "../../../src/components/TextInput/TextInputCustom";
 
 
 const addProduct = () => {
@@ -52,7 +53,17 @@ const addProduct = () => {
                             {{
                                 product_id: product_id,
                                 product_code: product_code,
-                                product_name: "123456",
+                                product_name: "",
+                                product_group_id: "1",
+                                product_category_id: "1",
+                                product_status_id: "1",
+                                receiver_user_id: "1",
+                                description: "",
+                                product_price: "",
+                                bought_time: "",
+                                receiver_unit: "",
+                                bought_status: "نو با گارانتی",
+                                bought_garanting_finish_time: "",
                             }}
                         onSubmit={values => console.log(values)}>
                     {({handleChange, handleBlur, handleSubmit, values}) => (
@@ -64,14 +75,7 @@ const addProduct = () => {
                                         {values.product_code}
                                     </TextCustom>
                                 </View>
-                                <View>
-                                    <TextCustom>نام</TextCustom>
-                                    <TextInput name="product_name" placeholder="نام کالا"
-                                               onChangeText={handleChange('product_name')}
-                                               onBlur={handleBlur('product_name')}
-                                               value={values.product_name}
-                                               className="border border-gray-400 w-full p-1.5 rounded dark:text-gray-200"/>
-                                </View>
+                                <TextInputCustom name="product_name" title="نام محصول" handleBlur={handleBlur} handleChange={handleChange} values={values}/>
                                 <View>
                                     <TextCustom>گروه کالا</TextCustom>
                                     <SelectOption title="گروه کالا" option={groupListSelect}/>

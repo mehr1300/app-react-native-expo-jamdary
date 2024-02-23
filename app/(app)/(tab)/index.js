@@ -1,45 +1,48 @@
-import React from 'react';
-import ViewCustom from "../../../src/components/View/ViewCustom";
-import TextCustom from "../../../src/components/Text/TextCustom";
-import {Text, TouchableHighlight, View} from "react-native";
-import {log} from "expo/build/devtools/logger";
-import ButtonCustomOne from "../../../src/components/Button/ButtonCustomOne";
-import {Feather} from "@expo/vector-icons";
-import {Redirect} from "expo-router";
-
+import React, {useState} from 'react';
+ import TextCustom from "../../../src/components/Text/TextCustom";
+import { View} from "react-native";
+import LoadingOne from "../../../src/components/Animation/LoadingOne";
+import {Entypo, FontAwesome5, MaterialIcons} from "@expo/vector-icons";
+import {router} from "expo-router";
 
 
 
 const index = () => {
 
-    // const {value, status} = useSelector((state) => state.counter);
-    // const dispatch = useDispatch();
-    // const test = (input) => {
-    //     console.log(input)
-    // }
 
-    // return <Redirect href="/qrcode" />;
+    // return router.push({pathname : '(form)/addProduct' , params : { product_id: "" ,product_code: 100016 }})
 
     return (
-        <ViewCustom className="bg-gray-200  flex-1 items-center justify-center w-full  p-10 space-y-8">
-            <TextCustom className="text-slate-800 flex text-2xl">Home</TextCustom>
-            <TextCustom className="text-slate-800 flex text-2xl">Home</TextCustom>
-            <TextCustom className="text-slate-800 flex text-2xl">Home</TextCustom>
-
-            <TouchableHighlight className="w-full" onPress={()=>console.log("asdasdasd")} underlayColor="white">
-                <View  className="flex flex-row space-x-2 bg-blue-500 rounded p-3 w-full justify-center items-center">
-                    <TextCustom className = "text-white">مهرداد</TextCustom>
-                    <Feather name="repeat" size={24} color="black" />
+        <View className="bg-gray-200  flex-1 items-center justify-center w-full  p-10 space-y-3">
+            <View className="w-full flex flex-row space-x-3">
+                <View className="flex flex-col space-y-2 bg-red-200 w-1/2 justify-center items-center h-36 rounded-xl">
+                    <View className="flex flex-row space-x-2">
+                        <TextCustom className=" flex text-lg">گروه ها</TextCustom>
+                        <FontAwesome5 name="layer-group" size={24} color="black" />
+                    </View>
+                    <TextCustom className="text-slate-800 flex text-2xl">1500</TextCustom>
                 </View>
-            </TouchableHighlight>
-
-            <ButtonCustomOne title="مهرداد" titleSize={15} color="bg-gray-500"
-                             icon={<Feather name="repeat" size={24} color="white" />}
-                             operator={()=>{console.log("3333")}}/>
-
-        </ViewCustom>
+                <View className="flex flex-col space-y-2 bg-red-200 w-1/2 justify-center items-center h-36 rounded-xl">
+                    <View className="flex flex-row space-x-2">
+                        <TextCustom className=" flex text-lg">گروه ها</TextCustom>
+                        <MaterialIcons name="category" size={26} color="black" />
+                    </View>
+                    <TextCustom className="text-slate-800 flex text-2xl">1500</TextCustom>
+                </View>
+            </View>
+            <View className="w-full flex flex-row ">
+                <View className="flex flex-col bg-red-200 w-full justify-center items-center h-36 rounded-xl">
+                    <View className="flex flex-row space-x-2">
+                        <TextCustom className=" flex text-lg">کالا ها</TextCustom>
+                        <Entypo name="box" size={24} color="black" />
+                    </View>
+                    <TextCustom className="text-slate-800 flex text-2xl">1500</TextCustom>
+                </View>
+            </View>
+        </View>
     );
 }
+
 
 export default index;
 
