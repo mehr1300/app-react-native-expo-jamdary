@@ -1,19 +1,11 @@
 import React from 'react';
 import {styled} from "nativewind";
-import {TextInput, View} from "react-native";
-import TextCustom from "../Text/TextCustom";
+import {TextInput} from "react-native";
 const StyledTextInput = styled(TextInput)
 
-const TextInputCustom = ({title,name,handleChange,handleBlur,values}) => {
+const TextInputCustom = (props) => {
     return (
-        <View>
-            <TextCustom>{title}</TextCustom>
-            <StyledTextInput name={name}
-                       onChangeText={handleChange(name)}
-                       onBlur={handleBlur(name)}
-                       value={values[name]}
-                       className="border border-gray-400 w-full p-1.5 rounded dark:text-gray-200"/>
-        </View>
+        <StyledTextInput {...props}/>
     );
 };
 

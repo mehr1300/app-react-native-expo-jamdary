@@ -3,7 +3,7 @@ import {Text, View, StyleSheet, Button, TouchableHighlight} from "react-native";
 import {CameraView, Camera} from "expo-camera/next";
 import TextCustom from "../../../src/components/Text/TextCustom";
 import {useDispatch, useSelector} from "react-redux";
-import {searchAsyncProduct} from "../../../src/features/redux/productSlice";
+import {clearTypeProduct, searchAsyncProduct} from "../../../src/features/redux/productSlice";
 import ViewCustom from "../../../src/components/View/ViewCustom";
 import ButtonCustomOne from "../../../src/components/Button/ButtonCustomOne";
 import {Feather, Ionicons, MaterialCommunityIcons} from "@expo/vector-icons";
@@ -13,6 +13,7 @@ export default function qrcode() {
     const [hasPermission, setHasPermission] = useState(null);
     const [scanned, setScanned] = useState(false);
     const [barcode, setBarcode] = useState("");
+
 
     useEffect(() => {
         const getCameraPermissions = async () => {
@@ -38,6 +39,8 @@ export default function qrcode() {
     if (hasPermission === false) {
         return <Text>No access to camera</Text>;
     }
+
+
 
     return (
         <View className="flex-1 justify-center items-center">

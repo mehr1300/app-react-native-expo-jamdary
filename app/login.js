@@ -6,8 +6,10 @@ import {clearLogin, loginUser, postAsyncLogin} from "../src/features/redux/login
 import {TextInput, View, Image, Button, ToastAndroid} from "react-native";
 import {getAsyncSettingIndex} from "../src/features/redux/settingSlice";
 import {Config} from "../src/config/Config";
-import {Formik} from "formik";
-
+import {Formik, useFormik} from "formik";
+import * as yup from 'yup';
+import TextInputCustomOne from "../src/components/TextInput/TextInputCustomOne";
+import ButtonCustomOne from "../src/components/Button/ButtonCustomOne";
 
 
 export default function login() {
@@ -39,7 +41,6 @@ export default function login() {
 
 
     useEffect(() => {
-        console.log(login.data)
         if (login.status !== undefined) {
             if (login.status === 200) {
                 router.replace('/');
@@ -59,6 +60,26 @@ export default function login() {
         {label : "اتوماسیون" , value : "4"},
     ]
 
+    const initialValues = {
+        username: "mehr",
+        password: "123456"
+    }
+
+    const onSubmit = (values) => {
+        dispatch(postAsyncLogin(values))
+    }
+
+    const validationSchema = yup.object({
+        username: yup.string().required("نام کاربری را وارد کنید"),
+        password: yup.string().required("رمز عبور را وراد کنید")
+
+    })
+
+    const formik = useFormik({
+        initialValues: initialValues,
+        onSubmit: onSubmit,
+        validationSchema: validationSchema
+    });
 
     return (
         // <Redirect href="/index"/>
@@ -66,34 +87,15 @@ export default function login() {
             <Image className="w-32 h-32" source={{uri: `${Config.imageUrl + index?.login_logo_app}`}}/>
             <TextCustom className="text-slate-800 flex text-3xl">نرم افزار جمع داری</TextCustom>
             <TextCustom className="text-slate-800 flex text-xl mb-4">{index?.app_buyer_name}</TextCustom>
-            <Formik initialValues={{username: "mehr", password: "123456"}}
-                    onSubmit={values => dispatch(postAsyncLogin(values))}>
-                {({handleChange, handleBlur, handleSubmit, values}) => (
-                    <View className="w-full flex flex-col space-y-5">
-                        <View className="w-full flex flex-col space-y-2">
-                            <TextInput name="username" placeholder="نام کاربری"
-                                       onChangeText={handleChange('username')}
-                                       onBlur={handleBlur('username')}
-                                       value={values.username}
-                                       className="border border-gray-400 w-full p-1.5 rounded dark:text-gray-200"/>
-
-                            <TextInput name="password" placeholder="رمز عبور"
-                                       onChangeText={handleChange('password')}
-                                       onBlur={handleBlur('password')}
-                                       value={values.password}
-                                       className="border border-gray-400 w-full p-1.5 rounded dark:text-gray-200"/>
-                        </View>
-                        <View className="w-full space-">
-                            <Button onPress={handleSubmit} title="ورود" titleStyle={{color: "white", fontSize: 33}}
-                                    className="w-full bg-blue-500 rounded p-2 justify-center items-center text-lg"/>
-                        </View>
-
-
-
-                    </View>
-                )}
-            </Formik>
-
+            <View className="w-full flex flex-col space-y-5">
+                <View className="w-full flex flex-col space-y-2">
+                    <TextInputCustomOne title="نام کاربری" name="username" formik={formik}/>
+                    <TextInputCustomOne title="رمز عبور" name="password" formik={formik}/>
+                </View>
+                <View className="w-full ">
+                    <ButtonCustomOne title="ورود" operator={formik.handleSubmit}/>
+                </View>
+            </View>
             <View className="w-full justify-center items-center pt-10">
                 <TextCustom className="text-slate-800 flex text-sm">
                     {Config.version}

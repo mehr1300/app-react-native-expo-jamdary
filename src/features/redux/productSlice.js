@@ -146,7 +146,7 @@ export const searchAsyncProductName = createAsyncThunk('product/searchAsyncProdu
     }
 })
 const initialState = {
-    product: {},
+    product: false,
     changeUnitProduct: [],
     changeOrganization: {},
     changeUnitProductUser: [],
@@ -217,31 +217,33 @@ const productSlice = createSlice({
                 count: action.payload.data?.result.count,
                 page: action.payload.data?.result.page,
                 loadingList: false,
-                errorList: null,
+                errorList: false,
             }
         })
         builder.addCase(getAsyncProductList.pending, (state) => {
-            return {...state, productList: [], count: 1, page: 1, loadingList: true, errorList: null}
+            return {...state, productList: [], count: 1, page: 1, loadingList: true, errorList: false}
         })
         builder.addCase(getAsyncProductList.rejected, (state, action) => {
-            return {...state, productList: [], count: 1, page: 1, loadingList: false, errorList: ConfigMessage.error}
+            return {...state, productList: [], count: 1, page: 1, loadingList: false, errorList: true}
         })
 
 
         builder.addCase(postAsyncProduct.fulfilled, (state, action) => {
+
             return {
                 ...state,
                 result: action.payload,
                 loading: false,
-                error: null,
+                error: false,
             }
         })
         builder.addCase(postAsyncProduct.pending, (state) => {
-            return {...state, result: {}, loading: true, error: null}
+
+            return {...state, result: {}, loading: true, error: false}
         })
         builder.addCase(postAsyncProduct.rejected, (state, action) => {
 
-            return {...state, result: action.payload, loading: false, error: ConfigMessage.error}
+            return {...state, result: action.payload, loading: false, error: true}
         })
 
         builder.addCase(getAsyncProduct.fulfilled, (state, action) => {

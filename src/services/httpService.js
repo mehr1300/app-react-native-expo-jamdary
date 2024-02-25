@@ -1,5 +1,6 @@
 import axios from "axios";
 import {Config} from "../config/Config";
+import {router} from "expo-router";
 
 const app = axios.create({
     baseURL: Config.api,
@@ -10,10 +11,8 @@ app.interceptors.response.use(
     (res) => res,
     (err) => {
         if (err.response.status === 401) {
-            const currentURL = window.location.href;
-            if (!currentURL.endsWith("/(auth)/login")) {
-                return window.location.href = "/(auth)/login"
-            }
+            return router.replace("/login")
+            // if (!currentURL.endsWith("/(auth)/login")) {}
         }
         return Promise.reject(err);
     }
