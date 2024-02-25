@@ -2,10 +2,10 @@ import { Redirect, Stack } from 'expo-router';
 import {useSelector} from "react-redux";
 
 export default function AppLayout() {
-    const {isLogin} = useSelector(state => state.login)
-    if (!isLogin) {
-        return <Redirect href="/login" />;
-    }
+    // const {isLogin} = useSelector(state => state.login)
+    // if (!isLogin) {
+    //     return <Redirect href="/login" />;
+    // }
     return (
         <Stack   screenOptions ={{
                 // headerShown: false,
