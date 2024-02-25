@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from 'react';
-import ViewCustom from "../../../src/components/View/ViewCustom";
-import TextCustom from "../../../src/components/Text/TextCustom";
-import TextInputCustom from "../../../src/components/TextInput/TextInputCustom";
+import ViewCustom from "../../../../src/components/View/ViewCustom";
+import TextCustom from "../../../../src/components/Text/TextCustom";
+import TextInputCustom from "../../../../src/components/TextInput/TextInputCustom";
 import {useDispatch, useSelector} from "react-redux";
-import {clearResultProduct, clearTypeProduct, searchAsyncProduct} from "../../../src/features/redux/productSlice";
+import {clearResultProduct, clearTypeProduct, searchAsyncProduct} from "../../../../src/features/redux/productSlice";
 import {Link, router, useSegments} from "expo-router";
-import LoadingOne from "../../../src/components/Animation/LoadingOne";
+import LoadingOne from "../../../../src/components/Animation/LoadingOne";
 import {Keyboard, View} from "react-native";
-import ButtonCustomOne from "../../../src/components/Button/ButtonCustomOne";
+import ButtonCustomOne from "../../../../src/components/Button/ButtonCustomOne";
 import {Feather} from "@expo/vector-icons";
 
 const barcode = () => {
@@ -73,7 +73,7 @@ const barcode = () => {
                             <ButtonCustomOne title="ثبت کالا با این کد" color="bg-green-500"
                                              operator={() => {
                                                  router.push({
-                                                     pathname: '(form)/addProduct',
+                                                     pathname: 'product/addProduct',
                                                      params: {product_id: "", product_code: barcode}
                                                  })
                                              }}/>
@@ -121,7 +121,7 @@ const barcode = () => {
                            <Link
                                className="w-full text-center rounded-full py-2 px-4 bg-sky-600 text-white border-r-8 border-sky-700"
                                href={{
-                                   pathname: "(form)/showProduct",
+                                   pathname: "product/showProduct",
                                    params: {
                                        product_id: result.product.product_id,
                                        product_code: result.product.product_code
@@ -134,7 +134,7 @@ const barcode = () => {
                             <Link
                                 className="w-full text-center rounded-full py-2 px-4 bg-green-700 text-white border-r-8 border-green-600"
                                 href={{
-                                    pathname: "(form)/addProduct",
+                                    pathname: "product/addProduct",
                                     params: {
                                         product_id: result.product.product_id,
                                         product_code: result.product.product_code

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
- import TextCustom from "../../../src/components/Text/TextCustom";
+ import TextCustom from "../../../../src/components/Text/TextCustom";
 import { View} from "react-native";
-import LoadingOne from "../../../src/components/Animation/LoadingOne";
+import LoadingOne from "../../../../src/components/Animation/LoadingOne";
 import {Entypo, FontAwesome5, MaterialIcons} from "@expo/vector-icons";
 import {router} from "expo-router";
 
@@ -10,7 +10,7 @@ import {router} from "expo-router";
 const index = () => {
 
 
-    // return router.push({pathname : '(form)/addProduct' , params : { product_id: "" ,product_code: 100016 }})
+    // return router.push({pathname : 'product/addProduct' , params : { product_id: "" ,product_code: 100016 }})
 
     return (
         <View className="bg-gray-200  flex-1 items-center justify-center w-full  p-10 space-y-3">

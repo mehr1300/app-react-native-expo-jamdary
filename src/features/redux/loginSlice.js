@@ -14,9 +14,29 @@ export const postAsyncLogin = createAsyncThunk('login/postAsyncLoginPhone', asyn
     }
 })
 
+export const postAsyncLogOut = createAsyncThunk('login/postAsyncLogOut', async (payload, {rejectWithValue}) => {
+    try {
+        const result = await http.post("", formUrlEncoded({...payload, action: "logout"}))
+        return await result;
+    } catch (error) {
+        return rejectWithValue(error.response, error.message)
+    }
+})
+
+export const postAsyncCheckedLogin = createAsyncThunk('login/postAsyncCheckedLogin', async (payload, {rejectWithValue}) => {
+    try {
+        const result = await http.post("", formUrlEncoded({...payload, action: "check_login"}))
+        return await result;
+    } catch (error) {
+        return rejectWithValue(error.response, error.message)
+    }
+})
+
 export const loginSlice = createSlice({
     name: 'login',
     initialState: {
+        logOut: {},
+        checkedLogin: {},
         login: false,
         isLogin: false,
         loading : false
@@ -28,6 +48,15 @@ export const loginSlice = createSlice({
         loginUser: (state) => {
             state.isLogin = true
         },
+        clearLoginVerification: (state) => {
+            state.loginVerification = false
+        },
+        clearLogOut: (state) => {
+            state.logOut = false
+        },
+        checkedLoginSlice: (state) => {
+            state.checkedLogin = false
+        }
     },
     extraReducers: (builder) => {
 
@@ -41,11 +70,38 @@ export const loginSlice = createSlice({
             return {...state, login: action.payload, loading: false, error: null}
         })
 
+        builder.addCase(postAsyncLogOut.fulfilled, (state, action) => {
+            return {...state, logOut: action.payload, loading: false, error: null}
+        })
+
+        builder.addCase(postAsyncLogOut.pending, (state) => {
+            return {...state, logOut: false, loading: true, error: null}
+        })
+        builder.addCase(postAsyncLogOut.rejected, (state, action) => {
+            return {...state, logOut: action.payload, loading: false, error: ConfigMessage.error}
+        })
+
+
+        builder.addCase(postAsyncCheckedLogin.fulfilled, (state, action) => {
+            return {...state, checkedLogin: action.payload}
+        })
+
+        builder.addCase(postAsyncCheckedLogin.pending, (state) => {
+            return {...state, checkedLogin: false}
+        })
+        builder.addCase(postAsyncCheckedLogin.rejected, (state, action) => {
+            return {...state, checkedLogin: action.payload}
+        })
 
     }
 });
 
-export const {clearLogin,loginUser} = loginSlice.actions;
+export const {clearLogin,
+    loginUser,
+    clearLoginVerification,
+    clearLogOut,
+    checkedLoginSlice
+} = loginSlice.actions;
 export const selectCount = (state) => state.login.value;
 
 export default loginSlice.reducer;

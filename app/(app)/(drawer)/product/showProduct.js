@@ -2,12 +2,12 @@ import React, {useEffect, useState} from 'react';
 import {router, useLocalSearchParams} from "expo-router";
 
 import {useDispatch, useSelector} from "react-redux";
-import {clearResultProduct, getAsyncProduct, productAsync} from "../../../src/features/redux/productSlice";
-import TextCustom from "../../../src/components/Text/TextCustom";
+import {clearResultProduct, getAsyncProduct, productAsync} from "../../../../src/features/redux/productSlice";
+import TextCustom from "../../../../src/components/Text/TextCustom";
 import {SafeAreaView, ScrollView, View} from "react-native";
-import LoadingOne from "../../../src/components/Animation/LoadingOne";
-import Box from "../../../src/components/Text/Box";
-import {persianDateNT} from "../../../src/utility/persianDateNT";
+import LoadingOne from "../../../../src/components/Animation/LoadingOne";
+import Box from "../../../../src/components/Text/Box";
+import {persianDateNT} from "../../../../src/utility/persianDateNT";
 
 
 const showProduct = () => {

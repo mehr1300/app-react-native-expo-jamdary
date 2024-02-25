@@ -1,11 +1,11 @@
 import React, {useState, useEffect} from "react";
 import {Text, View, StyleSheet, Button, TouchableHighlight} from "react-native";
 import {CameraView, Camera} from "expo-camera/next";
-import TextCustom from "../../../src/components/Text/TextCustom";
+import TextCustom from "../../../../src/components/Text/TextCustom";
 import {useDispatch, useSelector} from "react-redux";
-import {clearTypeProduct, searchAsyncProduct} from "../../../src/features/redux/productSlice";
-import ViewCustom from "../../../src/components/View/ViewCustom";
-import ButtonCustomOne from "../../../src/components/Button/ButtonCustomOne";
+import {clearTypeProduct, searchAsyncProduct} from "../../../../src/features/redux/productSlice";
+import ViewCustom from "../../../../src/components/View/ViewCustom";
+import ButtonCustomOne from "../../../../src/components/Button/ButtonCustomOne";
 import {Feather, Ionicons, MaterialCommunityIcons} from "@expo/vector-icons";
 import { router } from 'expo-router';
 
@@ -100,7 +100,7 @@ export default function qrcode() {
                                     </ViewCustom>
                                     <View className="w-full mt-4">
                                         <ButtonCustomOne title="ثبت کالا با این کد" color="bg-green-500"
-                                                         operator={()=>{router.push({pathname : '(form)/addProduct' , params : { product_id: "" ,product_code: barcode }})}}/>
+                                                         operator={()=>{router.push({pathname : 'product/addProduct' , params : { product_id: "" ,product_code: barcode }})}}/>
                                     </View>
                                 </ViewCustom>
                             )

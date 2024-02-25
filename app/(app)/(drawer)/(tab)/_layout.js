@@ -2,26 +2,28 @@ import {Tabs, useRouter, useSegments} from 'expo-router';
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
 import {Ionicons} from "@expo/vector-icons";
+import {DrawerToggleButton} from "@react-navigation/drawer";
 
-export default function HomeLayout() {
+export default function TabsLayout() {
 
-    const {isLogin} = useSelector((state) => state.login);
-    const dispatch = useDispatch();
-    const router = useRouter();
-
-    const segments = useSegments();
-
-    useEffect(() => {
-        if(!isLogin){
-            return router.replace("/login")
-        }
-    }, [isLogin,segments])
+    // const {isLogin} = useSelector((state) => state.login);
+    // const dispatch = useDispatch();
+    // const router = useRouter();
+    //
+    // const segments = useSegments();
+    //
+    // useEffect(() => {
+    //     if(!isLogin){
+    //         return router.replace("/login")
+    //     }
+    // }, [isLogin,segments])
 
 
     return (
         <Tabs  screenOptions={{
+            headerRight : ()=><DrawerToggleButton />,
             tabBarLabelStyle: {fontSize: 13, fontWeight: 'bold' ,paddingBottom :4},
-            headerShown : false,
+            // headerShown : false,
             tabBarActiveTintColor: 'white', // تغییر رنگ متن تب فعال
             tabBarInactiveTintColor: 'gray', // تغییر رنگ متن تب‌های غیرفعال
             tabBarActiveBackgroundColor: 'gray', // تغییر رنگ پس‌زمینه تب فعال

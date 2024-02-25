@@ -6,6 +6,7 @@ import settingReducer from './redux/settingSlice';
 import groupReducer from './redux/groupSlice';
 import categoryReducer from './redux/categorySlice';
 import statusReducer from './redux/statusSlice';
+import profileReducer from './redux/profileSlice';
 
 export const store = configureStore({
     reducer: {
@@ -16,6 +17,7 @@ export const store = configureStore({
         category: categoryReducer,
         group: groupReducer,
         status: statusReducer,
+        profile: profileReducer,
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({

@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import TextCustom from "../../../src/components/Text/TextCustom";
+import TextCustom from "../../../../src/components/Text/TextCustom";
 import {useDispatch, useSelector} from "react-redux";
-import {getAsyncProductList} from "../../../src/features/redux/productSlice";
+import {getAsyncProductList} from "../../../../src/features/redux/productSlice";
 import {Text, SafeAreaView, ScrollView, View} from "react-native";
 import {Link, useRouter} from "expo-router";
-import LoadingOne from "../../../src/components/Animation/LoadingOne";
+import LoadingOne from "../../../../src/components/Animation/LoadingOne";
 
 const list = () => {
 
@@ -75,7 +75,7 @@ const list = () => {
                                         <View className="flex flex-row items-center w-full mt-2">
                                             <View className="w-1/2 pr-1">
                                                 <Link className="w-full text-center rounded-full py-2 px-4 bg-sky-600 text-white border-r-8 border-sky-700" href={{
-                                                    pathname: "(form)/showProduct",
+                                                    pathname: "product/showProduct",
                                                     params: { product_id: value.product_id,product_code: value.product_code }
                                                 }}>
                                                     <TextCustom>مشاهده</TextCustom>
@@ -83,7 +83,7 @@ const list = () => {
                                             </View>
                                             <View className="w-1/2 pr-1">
                                                 <Link className="w-full text-center rounded-full py-2 px-4 bg-green-700 text-white border-r-8 border-green-600" href={{
-                                                    pathname: "(form)/addProduct",
+                                                    pathname: "product/addProduct",
                                                     params: { product_id: value.product_id,product_code: value.product_code }
                                                 }}>
                                                     <TextCustom>ویرایش</TextCustom>

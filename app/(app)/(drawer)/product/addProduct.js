@@ -1,16 +1,16 @@
 import React, {useEffect, useState} from 'react';
 import {router, useLocalSearchParams} from "expo-router";
-import TextCustom from "../../../src/components/Text/TextCustom";
+import TextCustom from "../../../../src/components/Text/TextCustom";
 import {useDispatch, useSelector} from "react-redux";
-import {clearLogin, loginUser, postAsyncLogin} from "../../../src/features/redux/loginSlice";
+import {clearLogin, loginUser, postAsyncLogin} from "../../../../src/features/redux/loginSlice";
 import {Formik, useFormik} from "formik";
 import {Button, Modal, SafeAreaView, ScrollView, TextInput, ToastAndroid, View} from "react-native";
-import {getAsyncGroupListSelect} from "../../../src/features/redux/groupSlice";
-import {getAsyncStatusSelect} from "../../../src/features/redux/statusSlice";
-import SelectOption from "../../../src/components/SelectOption/SelectOption";
-import TextInputCustomOne from "../../../src/components/TextInput/TextInputCustomOne";
+import {getAsyncGroupListSelect} from "../../../../src/features/redux/groupSlice";
+import {getAsyncStatusSelect} from "../../../../src/features/redux/statusSlice";
+import SelectOption from "../../../../src/components/SelectOption/SelectOption";
+import TextInputCustomOne from "../../../../src/components/TextInput/TextInputCustomOne";
 import * as yup from "yup";
-import ButtonCustomOne from "../../../src/components/Button/ButtonCustomOne";
+import ButtonCustomOne from "../../../../src/components/Button/ButtonCustomOne";
 const addProduct = () => {
 
     const {product, result, resultSearch, loading, organizationUserInAddProduct} = useSelector(state => state.product)
@@ -183,11 +183,11 @@ import {
     clearResultProduct,
     getAsyncProduct, postAsyncProduct,
     searchAsyncProductAdd
-} from "../../../src/features/redux/productSlice";
-import {getAsyncCategorySelect} from "../../../src/features/redux/categorySlice";
+} from "../../../../src/features/redux/productSlice";
+import {getAsyncCategorySelect} from "../../../../src/features/redux/categorySlice";
 
 
-import LoadingOne from "../../../src/components/Animation/LoadingOne";
+import LoadingOne from "../../../../src/components/Animation/LoadingOne";
 
 export default addProduct;
 
