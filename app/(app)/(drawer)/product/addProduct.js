@@ -95,7 +95,7 @@ const addProduct = () => {
                 showToastWithGravityAndOffset(result?.data?.message)
                 dispatch(clearResultProduct())
                 setTimeout(() => {
-
+                    router.back();
                 }, 1000)
             } else {
                 showToastWithGravityAndOffset(result?.data?.message)

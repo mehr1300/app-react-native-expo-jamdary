@@ -10,6 +10,7 @@ import {Formik, useFormik} from "formik";
 import * as yup from 'yup';
 import TextInputCustomOne from "../src/components/TextInput/TextInputCustomOne";
 import ButtonCustomOne from "../src/components/Button/ButtonCustomOne";
+import TextCustomBold from "../src/components/Text/TextCustomBold";
 
 
 export default function login() {
@@ -85,12 +86,12 @@ export default function login() {
         // <Redirect href="/index"/>
         <View className="bg-gray-200  flex-1 items-center justify-center w-full p-10 space-y-4">
             <Image className="w-32 h-32" source={{uri: `${Config.imageUrl + index?.login_logo_app}`}}/>
-            <TextCustom className="text-slate-800 flex text-3xl">نرم افزار جمع داری</TextCustom>
+            <TextCustomBold className="text-slate-800 flex text-3xl">نرم افزار جمع داری</TextCustomBold>
             <TextCustom className="text-slate-800 flex text-xl mb-4">{index?.app_buyer_name}</TextCustom>
             <View className="w-full flex flex-col space-y-5">
                 <View className="w-full flex flex-col space-y-2">
                     <TextInputCustomOne title="نام کاربری" name="username" formik={formik}/>
-                    <TextInputCustomOne title="رمز عبور" name="password" formik={formik}/>
+                    <TextInputCustomOne secureTextEntry={true} title="رمز عبور" name="password" formik={formik}/>
                 </View>
                 <View className="w-full ">
                     <ButtonCustomOne title="ورود" operator={formik.handleSubmit}/>

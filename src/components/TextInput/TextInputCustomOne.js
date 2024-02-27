@@ -6,7 +6,7 @@ import {useFonts} from "expo-font";
 import {SplashScreen} from "expo-router";
 const StyledTextInput = styled(TextInput)
 
-const TextInputCustomOne = ({formik,title,name}) => {
+const TextInputCustomOne = ({formik,title,name,secureTextEntry=false}) => {
 
     const [fontsLoaded, fontError] = useFonts({
         yekanRegular: require("../../../assets/fonts/IRANYekanX-Regular.ttf"),
@@ -28,7 +28,7 @@ const TextInputCustomOne = ({formik,title,name}) => {
     return (
         <View>
             <TextCustom>{title}</TextCustom>
-            <StyledTextInput style={[font]} name={name}
+            <StyledTextInput secureTextEntry={secureTextEntry} style={[font]} name={name}
                              onChangeText={formik.handleChange(name)}
                              onBlur={formik.handleBlur(name)}
                              value={formik.values[name]}

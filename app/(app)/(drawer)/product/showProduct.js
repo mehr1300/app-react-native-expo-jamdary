@@ -26,14 +26,14 @@ const showProduct = () => {
     const [loadingShow , setLoadingShow] = useState(true)
 
     useEffect(() => {
-        dispatch(clearResultProduct())
+        // dispatch(clearResultProduct())
         dispatch(productAsync({product_code: product_code}))
 
         setTimeout(()=>{
             setLoadingShow(false)
         },700)
 
-    }, [])
+    }, [product_code])
 
 
     return (

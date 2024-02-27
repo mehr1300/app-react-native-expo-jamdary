@@ -25,6 +25,7 @@ export default function TabsLayout() {
     return (
         <Tabs  screenOptions={{
             headerRight : ()=><DrawerToggleButton />,
+            tabBarLabel : props=><TextCustomBold className={`${props.focused ? "text-white" : "text-gray-500"} text-[13px]`} >{props.children}</TextCustomBold>,
             tabBarLabelStyle: {fontSize: 13, fontWeight: 'bold' ,paddingBottom :4},
             // headerShown : false,
             headerTitleAlign : "center",

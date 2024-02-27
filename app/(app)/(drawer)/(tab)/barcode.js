@@ -84,7 +84,7 @@ const barcode = () => {
 
 
             {type === "exist_product" && setTimeout(() => {
-            }, 9000) && (
+            }, 500) && (
 
                 <View className={`bg-sky-600/10 p-4 border border-gray-400 rounded w-full`}>
                     <View

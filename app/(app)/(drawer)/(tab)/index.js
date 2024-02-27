@@ -38,15 +38,16 @@ const index = () => {
 
 const Card = ({color, colorDown, title, icon, count}) => {
     return (
-        <View className={`${colorDown} flex flex-col  w-1/2 justify-center items-center h-36 rounded-xl overflow-hidden border border-gray-300`}>
-            <View className="flex flex-row space-x-2 h-1/2 justify-center items-center">
-                <TextCustomBold className="flex text-lg">{title}</TextCustomBold>
-                {icon}
+        <View className={`flex flex-col w-1/2 p-1.5`}>
+            <View className={`${colorDown} flex flex-col w-full justify-center items-center h-36 rounded-xl overflow-hidden border border-gray-300`}>
+                <View className="flex flex-row space-x-2 h-1/2 justify-center items-center">
+                    <TextCustomBold className="flex text-lg">{title}</TextCustomBold>
+                    {icon}
+                </View>
+                <View className={`${color} bg-opacity-90 flex flex-row space-x-2 w-full justify-center items-center h-1/2`}>
+                    <TextCustom className="text-slate-800 flex text-2xl">{count}</TextCustom>
+                </View>
             </View>
-            <View className={`${color} bg-opacity-90 flex flex-row space-x-2 w-full justify-center items-center h-1/2`}>
-                <TextCustom className="text-slate-800 flex text-2xl">{count}</TextCustom>
-            </View>
-
         </View>
     )
 }
