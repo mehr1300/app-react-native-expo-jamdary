@@ -3,6 +3,9 @@ import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
 import {Ionicons} from "@expo/vector-icons";
 import {DrawerToggleButton} from "@react-navigation/drawer";
+import {View} from "react-native";
+import TextCustom from "../../../../src/components/Text/TextCustom";
+import TextCustomBold from "../../../../src/components/Text/TextCustomBold";
 
 export default function TabsLayout() {
 
@@ -24,6 +27,8 @@ export default function TabsLayout() {
             headerRight : ()=><DrawerToggleButton />,
             tabBarLabelStyle: {fontSize: 13, fontWeight: 'bold' ,paddingBottom :4},
             // headerShown : false,
+            headerTitleAlign : "center",
+            headerTitle: props => <View><TextCustomBold className="text-lg text-gray-600">{props.children}</TextCustomBold></View>,
             tabBarActiveTintColor: 'white', // تغییر رنگ متن تب فعال
             tabBarInactiveTintColor: 'gray', // تغییر رنگ متن تب‌های غیرفعال
             tabBarActiveBackgroundColor: 'gray', // تغییر رنگ پس‌زمینه تب فعال

@@ -7,7 +7,7 @@ export const Config = {
     linkSupportExtension:"https://nilfamtech.com/applicsation/payment/jamdary/",
     imageUrl: "https://ntapi.ir/nilfam-tech-api-center/jamdary",
     helpPdf:"https://dl.jamdary.ir/files/jamdaryExampleList.rar",
-    version: "2.2.0",
+    version: "2.1.0",
     loginTitle: "سامانه جمع داری",
     about: "سامانه جمع داری",
     making: "NilfamTech",

@@ -8,6 +8,7 @@ import {SafeAreaView, ScrollView, View} from "react-native";
 import LoadingOne from "../../../../src/components/Animation/LoadingOne";
 import Box from "../../../../src/components/Text/Box";
 import {persianDateNT} from "../../../../src/utility/persianDateNT";
+import TextCustomBold from "../../../../src/components/Text/TextCustomBold";
 
 
 const showProduct = () => {
@@ -41,18 +42,24 @@ const showProduct = () => {
             {!loading && !loadingShow && productAsyncPro && (
                 <SafeAreaView>
                     <ScrollView className="p-4">
-                        <View className="flex flex-col bg-gray-200 flex-1 items-center justify-center w-full p-10 space-y-3">
-                            <Box title="نام سازمان" response={productAsyncPro.organization_title}/>
-                            <Box title="نام کالا" response={productAsyncPro.product_name}/>
-                            <Box title="گروه" response={productAsyncPro.product_group_title}/>
-                            <Box title="واحد گیرنده" response={productAsyncPro.receiver_unit}/>
-                            <Box title=" گیرنده" response={productAsyncPro.receiver_user}/>
-                            <Box title="دسته" response={productAsyncPro.product_category_title}/>
-                            <Box title="وضعیت" response={productAsyncPro.product_status_title}/>
-                            <Box title="ثبت شده توسط " response={productAsyncPro.registration_admin}/>
-                            <Box title="زمان ثبت" response={persianDateNT.date(productAsyncPro.registration_create_time)}/>
-                            <Box title="زمان اپدیت" response={persianDateNT.date(productAsyncPro.registration_update_time)}/>
+                        <View  className="flex flex-1">
+                            <View className="flex flex-col items-end justify-center w-full py-10 pr-1.5 space-y-7">
+                                <TextCustomBold className="text-2xl">اطلاعات کالا : </TextCustomBold>
+                                <View className="flex flex-col items-end justify-center w-full">
+                                    <Box title="کد کالا" response={productAsyncPro.product_code}/>
+                                    <Box title="نام سازمان" response={productAsyncPro.organization_title}/>
+                                    <Box title="نام کالا" response={productAsyncPro.product_name}/>
+                                    <Box title="گروه" response={productAsyncPro.product_group_title}/>
+                                    <Box title="واحد گیرنده" response={productAsyncPro.receiver_unit}/>
+                                    <Box title="گیرنده" response={productAsyncPro.receiver_user}/>
+                                    <Box title="دسته" response={productAsyncPro.product_category_title}/>
+                                    <Box title="وضعیت" response={productAsyncPro.product_status_title}/>
+                                    <Box title="ثبت شده توسط" response={productAsyncPro.registration_admin}/>
+                                    <Box title="زمان ثبت" response={persianDateNT.date(productAsyncPro.registration_create_time)}/>
+                                    <Box title="زمان اپدیت" response={persianDateNT.date(productAsyncPro.registration_update_time)}/>
+                                </View>
 
+                            </View>
                         </View>
                     </ScrollView>
                 </SafeAreaView>

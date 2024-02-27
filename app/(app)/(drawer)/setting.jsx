@@ -1,7 +1,7 @@
 import {View} from "react-native";
-import TextCustom from "../../../../src/components/Text/TextCustom";
+import TextCustom from "../../../src/components/Text/TextCustom";
 
-const Index = () => {
+const Setting = () => {
     return (
         <View>
             <TextCustom>setting</TextCustom>
@@ -9,4 +9,4 @@ const Index = () => {
     );
 };
 
-export default Index;
+export default Setting;

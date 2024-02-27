@@ -40,7 +40,7 @@ const list = () => {
                 )}
                 {!loadingList && productList && productList.length > 0 &&
                     <SafeAreaView>
-                        <ScrollView className="p-4">
+                        <ScrollView className="p-4 mb-20">
 
                             {productList && productList.length > 0 && productList.map((value, index) => {
                                 return (

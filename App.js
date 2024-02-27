@@ -7,7 +7,7 @@ const App = () => {
 
     return (
         // <Provider store={store}>
-        //     <Index/>
+        //     <About/>
         // </Provider>
         <View>
             <Text>asdasd</Text>

@@ -17,7 +17,7 @@ export const persianDateNT = {
         if (input === null || input === undefined || input === "") {
             return message
         }
-        return time(input)
+        return time(input,2)
     },
     unix(input,message = 'No time to change') {
         if (input === null || input === undefined || input === "") {

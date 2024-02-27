@@ -23,6 +23,7 @@ const addProduct = () => {
 
 
     useEffect(() => {
+        setLoadingShow(true)
         dispatch(clearProductSlice())
         if (product_id !== '') {
             dispatch(getAsyncProduct({product_id: product_id}))
@@ -32,7 +33,7 @@ const addProduct = () => {
 
         setTimeout(()=>{
             setLoadingShow(false)
-        },500)
+        },1000)
 
     }, [product_id,product_code])
 
@@ -94,7 +95,7 @@ const addProduct = () => {
                 showToastWithGravityAndOffset(result?.data?.message)
                 dispatch(clearResultProduct())
                 setTimeout(() => {
-                    return router.replace("/")
+
                 }, 1000)
             } else {
                 showToastWithGravityAndOffset(result?.data?.message)
@@ -104,13 +105,17 @@ const addProduct = () => {
         }
     }, [result])
 
+    useEffect(() => {
+        formik.resetForm()
+    },[])
+
 
     return (
         <>
             {loadingShow   && <LoadingOne/>}
             {!loadingShow && (
                 <SafeAreaView>
-                    <ScrollView className="p-5 ">
+                    <ScrollView className="p-5">
                         {/*<View className=""></View>*/}
 
                         <View className="w-full flex flex-col space-y-5 mb-20">
@@ -165,7 +170,7 @@ const addProduct = () => {
 
                             </View>
                             <View className="w-full ">
-                                <ButtonCustomOne title="ورود" operator={formik.handleSubmit} color="bg-green-500"/>
+                                <ButtonCustomOne title={product_id === "" ? "ثبت اطلاعات" : "ثبت ویرایش"} operator={formik.handleSubmit} color="bg-green-500"/>
                             </View>
 
 

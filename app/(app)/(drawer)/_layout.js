@@ -9,23 +9,25 @@ import TextCustom from "../../../src/components/Text/TextCustom";
 import ItemDrawer from "../../../src/components/Drawer/ItemDrawer";
 import {getAsyncProfileAdmin} from "../../../src/features/redux/profileSlice";
 import {clearLogOut, postAsyncLogOut} from "../../../src/features/redux/loginSlice";
+import TextCustomBold from "../../../src/components/Text/TextCustomBold";
+import {Config} from "../../../src/config/Config";
 export default function DrawerLayout() {
 
-    // const {isLogin} = useSelector((state) => state.login);
-    // const dispatch = useDispatch();
-    // const router = useRouter();
-    //
-    // const segments = useSegments();
-    //
-    // useEffect(() => {
-    //     if(!isLogin){
-    //         return router.replace("/login")
-    //     }
-    // }, [isLogin,segments])
+    const {isLogin} = useSelector((state) => state.login);
+    const dispatch = useDispatch();
+    const router = useRouter();
+
+    const segments = useSegments();
+
+    useEffect(() => {
+        if(!isLogin){
+            return router.replace("/login")
+        }
+    }, [isLogin,segments])
 
     const {profile ,loading : loadingProfile} = useSelector(state => state.profile)
     const {logOut, loading} = useSelector(state => state.login)
-    const dispatch = useDispatch()
+
 
     useEffect(() => {
         dispatch(getAsyncProfileAdmin())
@@ -63,7 +65,7 @@ export default function DrawerLayout() {
                         <ItemDrawer title="لیست کالا ها" to="/list" icon={<Ionicons name="list" color="black" size={24} />}/>
                         <ItemDrawer title="جستجو بارکد" to="/barcode" icon={<Ionicons name="search" color="black" size={24} />}/>
                         <ItemDrawer title="اسکن کد" to="/qrcode" icon={<Ionicons name="scan-sharp" color="black" size={24} />}/>
-                        <ItemDrawer title="تنظیمات" to="/setting" icon={<Ionicons name="settings" color="black" size={24} />}/>
+                        {/*<ItemDrawer title="تنظیمات" to="/setting" icon={<Ionicons name="settings" color="black" size={24} />}/>*/}
                         <ItemDrawer title="اطلاعات برنامه" to="/about" icon={<Ionicons name="information-circle" size={24} color="black" />}/>
 
                         <View className="w-full mb-1">
@@ -75,24 +77,16 @@ export default function DrawerLayout() {
 
                     </View>
                 </View>
-                <View className="absolute bottom-4 w-full">
-                    <View className="flex flex-col justify-center items-center w-full">
-                        <TextCustom className="text-lg">نرم افزار جامع داری</TextCustom>
+                <View className="absolute bottom-8 w-full">
+                    <View className="flex flex-col justify-center items-center w-full space-y-2">
+                        <TextCustomBold className="text-lg">نرم افزار جامع داری</TextCustomBold>
                         <TextCustom>
                             <TextCustom>نسخه : </TextCustom>
-                            <TextCustom>5</TextCustom>
+                            <TextCustom>{Config.version}</TextCustom>
                         </TextCustom>
                     </View>
                 </View>
-                <View className="absolute bottom-4 w-full">
-                    <View className="flex flex-col justify-center items-center w-full">
-                        <TextCustom className="text-lg">نرم افزار جامع داری</TextCustom>
-                        <TextCustom>
-                            <TextCustom>نسخه : </TextCustom>
-                            <TextCustom>5</TextCustom>
-                        </TextCustom>
-                    </View>
-                </View>
+
             </DrawerContentScrollView>
         )
     }
@@ -108,17 +102,31 @@ export default function DrawerLayout() {
         <Drawer   screenOptions={{
             drawerPosition: 'right',
             headerShown : false,
+            headerLeft: () => null,
+            headerTitleAlign : "center",
+            headerTitle: props => <View><TextCustomBold className="text-lg text-gray-600">{props.children}</TextCustomBold></View>,
         }} drawerContent={props => <CustomDrawerContent {...props} />} >
 
-            <Drawer.Screen  name="setting/index" options={{
-                title: "تنظیمات",
-                headerLeft: () => null,
+            <Drawer.Screen  name="(tab)" options={{
+                title: "ٌصفحه اصلی",
+                headerRight : ()=><DrawerToggleButton />,
+                headerShown : false,
+            }}/>
+
+            <Drawer.Screen  name="product/addProduct" options={{
+                title: "کالا",
                 headerRight : ()=><DrawerToggleButton />,
                 headerShown : true,
             }}/>
-            <Drawer.Screen  name="about/index" options={{
+
+            <Drawer.Screen  name="product/showProduct" options={{
+                title: "جزئیات کالا",
+                headerRight : ()=><DrawerToggleButton />,
+                headerShown : true,
+            }}/>
+
+            <Drawer.Screen  name="about" options={{
                 title: "اطلاعات برنامه",
-                headerLeft: () => null,
                 headerRight : ()=><DrawerToggleButton />,
                 headerShown : true,
             }}/>
