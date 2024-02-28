@@ -178,7 +178,9 @@ const initialState = {
     loadingList: false,
     errorListDeleteAdmin: null,
     loadingListDeleteAdmin: false,
-    searchProductName: false
+    searchProductName: false,
+    loadingShowProduct: false,
+    errorShowProduct: false,
 }
 
 
@@ -443,8 +445,8 @@ const productSlice = createSlice({
                 productAsyncProCode: action.payload.data?.result.log_change_code,
                 productAsyncProOrganization: action.payload.data?.result.log_change_organization,
                 productAsyncProUnit: action.payload.data?.result.log_change_unit,
-                loading: false,
-                error: null,
+                loadingShowProduct: false,
+                errorShowProduct: false,
             }
         })
         builder.addCase(productAsync.pending, (state) => {
@@ -455,8 +457,8 @@ const productSlice = createSlice({
                 productAsyncProCode: [],
                 productAsyncProOrganization: [],
                 productAsyncProUnit: [],
-                loading: true,
-                error: null
+                loadingShowProduct: true,
+                errorShowProduct: false
             }
         })
         builder.addCase(productAsync.rejected, (state, action) => {
@@ -467,8 +469,8 @@ const productSlice = createSlice({
                 productAsyncProCode: [],
                 productAsyncProOrganization: [],
                 productAsyncProUnit: [],
-                loading: false,
-                error: ConfigMessage.error
+                loadingShowProduct: false,
+                errorShowProduct: true
             }
         })
 
