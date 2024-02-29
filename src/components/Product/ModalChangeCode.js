@@ -53,7 +53,8 @@ const ModalChangeCode = ({data,refresh,title,classCustom = "bg-emerald-400 borde
                 showToastWithGravityAndOffset(changeCode?.data?.message)
                 dispatch(clearChangeCodePro())
                 setTimeout(() => {
-                    refresh()
+                    refresh(formik.values.new_product_code)
+                    console.log(formik.values.new_product_code)
                     setModal({...modal,show : false})
                 }, 500)
             } else {

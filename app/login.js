@@ -94,7 +94,7 @@ export default function login() {
                     <TextInputCustomOne secureTextEntry={true} title="رمز عبور" name="password" formik={formik}/>
                 </View>
                 <View className="w-full ">
-                    <ButtonCustomOne title="ورود" operator={formik.handleSubmit}/>
+                    <ButtonCustomOne title="ورود" operator={formik.handleSubmit} loading={loading}/>
                 </View>
             </View>
             <View className="w-full justify-center items-center pt-10">

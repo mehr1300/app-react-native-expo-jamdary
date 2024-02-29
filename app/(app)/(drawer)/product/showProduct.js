@@ -1,9 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import {router, useLocalSearchParams} from "expo-router";
 import {useDispatch, useSelector} from "react-redux";
-import {clearResultProduct, getAsyncProduct, productAsync} from "../../../../src/features/redux/productSlice";
+import {
+    clearResultProduct,
+    getAsyncProduct,
+    getAsyncProductList,
+    productAsync
+} from "../../../../src/features/redux/productSlice";
 import TextCustom from "../../../../src/components/Text/TextCustom";
-import {SafeAreaView, ScrollView, View} from "react-native";
+import {ActivityIndicator, SafeAreaView, ScrollView, View} from "react-native";
 import LoadingOne from "../../../../src/components/Animation/LoadingOne";
 import Box from "../../../../src/components/Text/Box";
 import {persianDateNT} from "../../../../src/utility/persianDateNT";
@@ -12,6 +17,7 @@ import {formatNumber} from "../../../../src/utility/formatNumber";
 import ModalChangeUnit from "../../../../src/components/Product/ModalChangeUnit";
 import ModalChangeCode from "../../../../src/components/Product/ModalChangeCode";
 import {FontAwesome5} from "@expo/vector-icons";
+import {useFocusEffect} from "@react-navigation/native";
 
 
 const showProduct = () => {
@@ -28,20 +34,35 @@ const showProduct = () => {
     const dispatch = useDispatch();
     const [loadingShow , setLoadingShow] = useState(true)
 
-    useEffect(() => {
-        // dispatch(clearResultProduct())
-        dispatch(productAsync({product_code: product_code}))
+    // useEffect(() => {
+    //     // dispatch(clearResultProduct())
+    //     dispatch(productAsync({product_code: product_code}))
+    //
+    //     setTimeout(()=>{
+    //         setLoadingShow(false)
+    //     },700)
+    //
+    // }, [product_code])
 
-        setTimeout(()=>{
-            setLoadingShow(false)
-        },700)
+    useFocusEffect(
+        React.useCallback(() => {
+            dispatch(productAsync({product_code: product_code}))
 
-    }, [product_code])
+            setTimeout(()=>{
+                setLoadingShow(false)
+            },700)
+        }, [product_code])
+    );
+
 
 
     return (
         <>
-            {(loadingShow || loadingShowProduct ) && <LoadingOne/>}
+            {(loadingShow || loadingShowProduct ) &&
+                <View className="flex flex-1 justify-center items-center">
+                    <ActivityIndicator size="large" style={{ transform: [{ scaleX: 2 }, { scaleY: 2 }] }} color="#0000ff" />
+                </View>
+            }
             {!loadingShowProduct && !loadingShow && productAsyncPro && (
                 <SafeAreaView>
                     <ScrollView className="p-4">
@@ -76,7 +97,7 @@ const showProduct = () => {
 
                             <View className="flex flex-col items-end justify-center bg-white p-3 border-t-4 border-lime-500 dark:bg-slate-700 dark:border-lime-500 rounded mt-5">
                                 <View className="flex flex-col space-y-3 items-end ">
-                                    <ModalChangeCode refresh={()=>dispatch(productAsync({product_code: product_code}))} data={productAsyncPro} title="تغییر کد" classCustom="bg-lime-400 border-lime-500" icon={<FontAwesome5 name="building" size={20} color="black" />} />
+                                    <ModalChangeCode refresh={()=>router.back()} data={productAsyncPro} title="تغییر کد" classCustom="bg-lime-400 border-lime-500" icon={<FontAwesome5 name="building" size={20} color="black" />} />
                                     <TextCustomBold className="text-lg">
                                         تغییرات کد درون سازمانی :
                                     </TextCustomBold>
@@ -126,7 +147,7 @@ const showProduct = () => {
                             <View className="flex flex-col items-end justify-center bg-white p-3 border-t-4 border-emerald-500 dark:bg-slate-700 rounded mt-5">
                                 <View className="flex flex-col space-y-5">
                                     <View className="flex flex-col space-y-3 items-end justify-end">
-                                        <ModalChangeUnit refresh={()=>dispatch(productAsync({product_code: product_code}))} data={productAsyncPro} title="تغییر واحد" name="productAsyncProUnit" icon={<FontAwesome5 name="exchange-alt" size={20} color="black" />}/>
+                                        <ModalChangeUnit refresh={()=>router.back()} data={productAsyncPro} title="تغییر واحد" name="productAsyncProUnit" icon={<FontAwesome5 name="exchange-alt" size={20} color="black" />}/>
                                         <TextCustomBold className="text-lg">
                                             تغییرات واحد سازمانی :
                                         </TextCustomBold>
@@ -145,30 +166,30 @@ const showProduct = () => {
                                                     return (
                                                         <View key={index} className="flex flex-col space-y-3 w-full p-3 border border-gray-300 rounded-lg">
                                                             <View className="flex flex-row justify-between items-center w-full">
-                                                                <TextCustom className="">{va.full_name_new != "" ? va.full_name_new : "نام واحد ثبت نشده است"}</TextCustom>
-                                                                <TextCustomBold style={{width: "60%"}} className="">نام کارمند فعلی</TextCustomBold>
+                                                                <TextCustom className="w-1/2">{va.full_name_new}</TextCustom>
+                                                                <TextCustomBold className="w-1/2">نام کارمند فعلی</TextCustomBold>
                                                             </View>
                                                             <View className="flex flex-row justify-between items-center w-full">
-                                                                <TextCustom className="">{va.receiver_unit_new != "" ? va.receiver_unit_new : "نام واحد ثبت نشده است"}</TextCustom>
-                                                                <TextCustomBold style={{width: "60%"}} className="">نام واحد جاری</TextCustomBold>
-                                                            </View>
-
-                                                            <View className="flex flex-row justify-between items-center w-full">
-                                                                <TextCustom className="text-green-500">{va.full_name_old != "" ? va.full_name_old : "نام واحد ثبت نشده است"}</TextCustom>
-                                                                <TextCustomBold style={{width: "60%"}} className="">نام کارمند قبلی</TextCustomBold>
-                                                            </View>
-                                                            <View className="flex flex-row justify-between items-center w-full">
-                                                                <TextCustom className="text-green-500">{va.receiver_unit_old != "" ? va.receiver_unit_old : "نام واحد ثبت نشده است"}</TextCustom>
-                                                                <TextCustomBold style={{width: "50%"}} className="">نام واحد قبلی</TextCustomBold>
+                                                                <TextCustom className="w-1/2">{va.receiver_unit_new}</TextCustom>
+                                                                <TextCustomBold className="w-1/2">نام واحد جاری</TextCustomBold>
                                                             </View>
 
                                                             <View className="flex flex-row justify-between items-center w-full">
-                                                                <TextCustom style={{width: "60%"}}  className="text-justify">{va.product_change_unit_desc != "" ? va.product_change_unit_desc : "توضیحات ثبت نشده است"}</TextCustom>
-                                                                <TextCustomBold className="">توضیحات</TextCustomBold>
+                                                                <TextCustom className="text-green-500 w-1/2">{va.full_name_old}</TextCustom>
+                                                                <TextCustomBold className="w-1/2">نام کارمند قبلی</TextCustomBold>
                                                             </View>
                                                             <View className="flex flex-row justify-between items-center w-full">
-                                                                <TextCustom className="">{persianDateNT.date(va.product_change_unit_create_time)}</TextCustom>
-                                                                <TextCustomBold className="">زمان جابجایی</TextCustomBold>
+                                                                <TextCustom className="text-green-500 w-1/2">{va.receiver_unit_old}</TextCustom>
+                                                                <TextCustomBold className="">نام واحد قبلی</TextCustomBold>
+                                                            </View>
+
+                                                            <View className="flex flex-row justify-between items-center w-full">
+                                                                <TextCustom  className="text-justify w-1/2">{va.product_change_unit_desc}</TextCustom>
+                                                                <TextCustomBold className="w-1/2">توضیحات</TextCustomBold>
+                                                            </View>
+                                                            <View className="flex flex-row justify-between items-center w-full">
+                                                                <TextCustom className="w-1/2">{persianDateNT.date(va.product_change_unit_create_time)}</TextCustom>
+                                                                <TextCustomBold className="w-1/2">زمان جابجایی</TextCustomBold>
                                                             </View>
 
                                                         </View>

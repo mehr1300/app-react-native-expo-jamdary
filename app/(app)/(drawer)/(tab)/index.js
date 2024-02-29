@@ -8,7 +8,6 @@ import {useDispatch, useSelector} from "react-redux";
 import {dashboardAsync} from "../../../../src/features/redux/profileSlice";
 import TextCustomBold from "../../../../src/components/Text/TextCustomBold";
 
-
 const index = () => {
 
     const {dashboardAs} = useSelector(state => state.profile)
@@ -32,6 +31,11 @@ const index = () => {
                 <Card title="کالا ها" color="bg-yellow-200" colorDown="bg-yellow-400"
                       count={dashboardAs.count_product} icon={<MaterialIcons name="category" size={24} color="black"/>}/>
             </View>
+
+            <View className="w-full">
+
+            </View>
+
         </View>
     );
 }
