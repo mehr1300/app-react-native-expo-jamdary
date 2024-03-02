@@ -24,12 +24,12 @@ export default function TabsLayout() {
 
     return (
         <Tabs  screenOptions={{
-            headerRight : ()=><DrawerToggleButton />,
-            tabBarLabel : props=><TextCustomBold className={`${props.focused ? "text-white" : "text-gray-500"} text-[13px]`} >{props.children}</TextCustomBold>,
+            headerLeft: ()=><DrawerToggleButton />,
+            tabBarLabel : props=><TextCustomBold className={`${props.focused ? "text-white" : "text-gray-500"} text-[12px] p-1`} >{props.children}</TextCustomBold>,
             tabBarLabelStyle: {fontSize: 13, fontWeight: 'bold' ,paddingBottom :4},
             // headerShown : false,
             headerTitleAlign : "center",
-            headerTitle: props => <View><TextCustomBold className="text-lg text-gray-600">{props.children}</TextCustomBold></View>,
+            headerTitle: props => <View><TextCustomBold className="text-gray-600">{props.children}</TextCustomBold></View>,
             tabBarActiveTintColor: 'white', // تغییر رنگ متن تب فعال
             tabBarInactiveTintColor: 'gray', // تغییر رنگ متن تب‌های غیرفعال
             tabBarActiveBackgroundColor: 'gray', // تغییر رنگ پس‌زمینه تب فعال

@@ -29,7 +29,6 @@ const list = () => {
 
     useFocusEffect(
         React.useCallback(() => {
-            console.log("list")
             dispatch(getAsyncProductList({row_per_page: parseInt(perPage), page_number: parseInt(numberPage)}))
             setTimeout(() => {
                 setLoadingShow(false)
@@ -63,11 +62,11 @@ const list = () => {
                                       className={` ${index % 2 === 0 ? "bg-sky-600/10" : "bg-green-600/10"} p-4 border border-gray-400 rounded mb-4 `}>
                                     <View
                                         className={`flex flex-row justify-between items-center p-1 pb-1.5 border-b-[1.5px] border-dashed ${index % 2 === 0 ? "border-sky-700" : "border-green-700"}`}>
-                                        <TextCustom className="text-slate-800 flex">{value.product_code}</TextCustom>
                                         <TextCustom
                                             className={`text-slate-800 text-lg ${index % 2 === 0 ? "text-sky-600" : "text-green-600"} `}>
                                             {value.product_name}
                                         </TextCustom>
+                                        <TextCustom className="text-slate-800 flex">{value.product_code}</TextCustom>
                                     </View>
 
                                     <View className=" pt-2">
@@ -92,22 +91,9 @@ const list = () => {
                                     </View>
 
                                     <View className="flex flex-row items-center w-full mt-2">
+
                                         <View className="w-1/2 pr-1">
-                                            <Link
-                                                className="w-full text-center rounded-full py-2 px-4 bg-sky-600 text-white border-r-8 border-sky-700"
-                                                href={{
-                                                    pathname: "product/showProduct",
-                                                    params: {
-                                                        product_id: value.product_id,
-                                                        product_code: value.product_code
-                                                    }
-                                                }}>
-                                                <TextCustom>مشاهده</TextCustom>
-                                            </Link>
-                                        </View>
-                                        <View className="w-1/2 pr-1">
-                                            <Link
-                                                className="w-full text-center rounded-full py-2 px-4 bg-green-700 text-white border-r-8 border-green-600"
+                                            <Link className="w-full text-center rounded-full py-2 px-4 bg-green-700 text-white border-r-8 border-green-600"
                                                 href={{
                                                     pathname: "product/addProduct",
                                                     params: {
@@ -116,6 +102,18 @@ const list = () => {
                                                     }
                                                 }}>
                                                 <TextCustom>ویرایش</TextCustom>
+                                            </Link>
+                                        </View>
+                                        <View className="w-1/2 pr-1">
+                                            <Link className="w-full text-center rounded-full py-2 px-4 bg-sky-600 text-white border-r-8 border-sky-700"
+                                                href={{
+                                                    pathname: "product/showProduct",
+                                                    params: {
+                                                        product_id: value.product_id,
+                                                        product_code: value.product_code
+                                                    }
+                                                }}>
+                                                <TextCustom>مشاهده</TextCustom>
                                             </Link>
                                         </View>
                                     </View>

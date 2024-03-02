@@ -66,10 +66,10 @@ const ModalChangeCode = ({data,refresh,title,classCustom = "bg-emerald-400 borde
 
     return (
         <View className="">
-            <TouchableHighlight className="w-full" onPress={()=>setModal({...modal,show : true})} underlayColor="white">
+            <TouchableHighlight className="w-40" onPress={()=>setModal({...modal,show : true})} underlayColor="white">
                 <View className={`${classCustom} flex flex-row space-x-2 rounded p-1 px-3 justify-center items-center border`}>
-                    <TextCustom className=" text-gray-700 text-base">{title}</TextCustom>
                     {icon}
+                    <TextCustom className=" text-gray-700 text-base">{title}</TextCustom>
                 </View>
             </TouchableHighlight>
 

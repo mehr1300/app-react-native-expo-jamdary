@@ -8,10 +8,9 @@ const ItemDrawer = ({to,title,icon = false}) => {
     const pathname = usePathname()
     return (
         <View className="w-full mb-1">
-            <Pressable onPress={()=>{return router.push(to)}}
-                       className={`${pathname === to && " bg-gray-300 "}  rounded-lg p-2  w-full flex flex-row justify-end items-center space-x-3`}>
-                <TextCustom className="text-lg">{title}</TextCustom>
+            <Pressable onPress={()=>{return router.push(to)}} className={`${pathname === to && " bg-gray-300 "}  rounded-lg p-2  w-full flex flex-row  items-center space-x-3`}>
                 {icon}
+                <TextCustom className="text-lg">{title}</TextCustom>
             </Pressable>
         </View>
     );

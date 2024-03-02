@@ -5,12 +5,12 @@ const ButtonCustomOne = ({title,loading=false ,titleSize=16 ,operator,icon = "",
     return (
         <TouchableHighlight className="w-full" onPress={operator} underlayColor="white">
             <View className={`${color} flex flex-row space-x-2 rounded p-2.5 w-full justify-center items-center`}>
+                {icon}
                 {!loading ?
                     <TextCustom className={`text-[${titleSize}px] text-white `}>{title}</TextCustom>
                     :
                     <ActivityIndicator size="small" color="#0000ff" />
                 }
-                {icon}
             </View>
         </TouchableHighlight>
     );

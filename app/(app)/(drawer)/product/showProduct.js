@@ -65,11 +65,11 @@ const showProduct = () => {
             }
             {!loadingShowProduct && !loadingShow && productAsyncPro && (
                 <SafeAreaView>
-                    <ScrollView className="p-4">
+                    <ScrollView className="p-2">
                         <View  className="flex flex-1 mb-8">
-                            <View className="flex flex-col items-end justify-center w-full py-10 pr-1.5 space-y-7">
+                            <View className="flex flex-col p-2 w-full py-10 pr-1.5 space-y-7">
                                 <TextCustomBold className="text-2xl">اطلاعات کالا : </TextCustomBold>
-                                <View className="flex flex-col items-end justify-center w-full">
+                                <View className="flex flex-col items-start justify-center w-full">
                                     <Box title="کد کالا" response={productAsyncPro.product_code}/>
                                     <Box title="نام سازمان" response={productAsyncPro.organization_title}/>
                                     <Box title="نام کالا" response={productAsyncPro.product_name}/>
@@ -86,7 +86,7 @@ const showProduct = () => {
                             </View>
 
                             {productAsyncPro.product_price !== "" && productAsyncPro.product_price !== null &&
-                                <View className="flex flex-col items-end justify-center bg-white p-3 border-t-4 border-emerald-600 rounded  w-full  dark:bg-slate-700
+                                <View className="flex flex-col  justify-center bg-white p-2 py-4 border-t-4 border-emerald-600 rounded  w-full  dark:bg-slate-700
                    dark:border-thPurpleWith-100 ">
                                     <Box title="قیمت" response={formatNumber(productAsyncPro.product_price)}/>
                                     <Box title="زمان خرید" response={productAsyncPro.bought_time}/>
@@ -95,8 +95,8 @@ const showProduct = () => {
                                 </View>
                             }
 
-                            <View className="flex flex-col items-end justify-center bg-white p-3 border-t-4 border-lime-500 dark:bg-slate-700 dark:border-lime-500 rounded mt-5">
-                                <View className="flex flex-col space-y-3 items-end ">
+                            <View className="flex flex-col  justify-center bg-white p-2 py-4 border-t-4 border-lime-500 dark:bg-slate-700 dark:border-lime-500 rounded mt-5">
+                                <View className="flex flex-col space-y-3  ">
                                     <ModalChangeCode refresh={()=>router.back()} data={productAsyncPro} title="تغییر کد" classCustom="bg-lime-400 border-lime-500" icon={<FontAwesome5 name="building" size={20} color="black" />} />
                                     <TextCustomBold className="text-lg">
                                         تغییرات کد درون سازمانی :
@@ -116,23 +116,20 @@ const showProduct = () => {
                                                     return (
                                                         <View key={index} className="flex flex-col space-y-3 w-full p-3 border border-gray-300 rounded-lg">
                                                             <View className="flex flex-row justify-between items-center w-full">
-                                                                <TextCustom className="">{formatNumber(val.product_code_new)}</TextCustom>
                                                                 <TextCustomBold className="">کد جاری</TextCustomBold>
+                                                                <TextCustom className="">{formatNumber(val.product_code_new)}</TextCustom>
                                                             </View>
                                                             <View className="flex flex-row justify-between items-center w-full">
-                                                                <TextCustom className="text-green-500">{formatNumber(val.product_code_old)}</TextCustom>
                                                                 <TextCustomBold className="">کد قبلی</TextCustomBold>
-
+                                                                <TextCustom className="text-green-500">{formatNumber(val.product_code_old)}</TextCustom>
                                                             </View>
                                                             <View className="flex flex-row justify-between items-center w-full">
-                                                                <TextCustom className="">{persianDateNT.date(val.product_change_code_create_time)}</TextCustom>
                                                                 <TextCustomBold className="">زمان تغییر</TextCustomBold>
-
+                                                                <TextCustom className="">{persianDateNT.date(val.product_change_code_create_time)}</TextCustom>
                                                             </View>
                                                             <View className="flex flex-row justify-between items-center w-full">
-                                                                <TextCustom className="">{val.product_change_code_desc != "" ? val.product_change_code_desc : "توضیحات ثبت نشده است"}</TextCustom>
                                                                 <TextCustomBold className="">توضیحات</TextCustomBold>
-
+                                                                <TextCustom className="">{val.product_change_code_desc != "" ? val.product_change_code_desc : "توضیحات ثبت نشده است"}</TextCustom>
                                                             </View>
                                                         </View>
                                                     )
@@ -144,12 +141,12 @@ const showProduct = () => {
                             </View>
 
 
-                            <View className="flex flex-col items-end justify-center bg-white p-3 border-t-4 border-emerald-500 dark:bg-slate-700 rounded mt-5">
+                            <View className="flex flex-col  justify-center bg-white p-2 py-4 border-t-4 border-emerald-500 dark:bg-slate-700 rounded mt-5">
                                 <View className="flex flex-col space-y-5">
-                                    <View className="flex flex-col space-y-3 items-end justify-end">
-                                        <ModalChangeUnit refresh={()=>router.back()} data={productAsyncPro} title="تغییر واحد" name="productAsyncProUnit" icon={<FontAwesome5 name="exchange-alt" size={20} color="black" />}/>
+                                    <View className="flex flex-col space-y-3">
+                                        <ModalChangeUnit refresh={()=>router.back()} data={productAsyncPro} title="تغییر کارمند" name="productAsyncProUnit" icon={<FontAwesome5 name="exchange-alt" size={20} color="black" />}/>
                                         <TextCustomBold className="text-lg">
-                                            تغییرات واحد سازمانی :
+                                            تغییرات کارمند و واحد سازمانی :
                                         </TextCustomBold>
                                     </View>
                                     {productAsyncProUnit == false &&
@@ -166,30 +163,30 @@ const showProduct = () => {
                                                     return (
                                                         <View key={index} className="flex flex-col space-y-3 w-full p-3 border border-gray-300 rounded-lg">
                                                             <View className="flex flex-row justify-between items-center w-full">
-                                                                <TextCustom className="w-1/2">{va.full_name_new}</TextCustom>
                                                                 <TextCustomBold className="w-1/2">نام کارمند فعلی</TextCustomBold>
+                                                                <TextCustom className="text-left w-1/2 ">{va.full_name_new}</TextCustom>
                                                             </View>
                                                             <View className="flex flex-row justify-between items-center w-full">
-                                                                <TextCustom className="w-1/2">{va.receiver_unit_new}</TextCustom>
                                                                 <TextCustomBold className="w-1/2">نام واحد جاری</TextCustomBold>
+                                                                <TextCustom className="text-left w-1/2">{va.receiver_unit_new}</TextCustom>
                                                             </View>
 
                                                             <View className="flex flex-row justify-between items-center w-full">
-                                                                <TextCustom className="text-green-500 w-1/2">{va.full_name_old}</TextCustom>
                                                                 <TextCustomBold className="w-1/2">نام کارمند قبلی</TextCustomBold>
+                                                                <TextCustom className="text-left text-green-500 w-1/2">{va.full_name_old}</TextCustom>
                                                             </View>
                                                             <View className="flex flex-row justify-between items-center w-full">
-                                                                <TextCustom className="text-green-500 w-1/2">{va.receiver_unit_old}</TextCustom>
-                                                                <TextCustomBold className="">نام واحد قبلی</TextCustomBold>
+                                                                <TextCustomBold className="w-1/2">نام واحد قبلی</TextCustomBold>
+                                                                <TextCustom className="text-left text-green-500 w-1/2">{va.receiver_unit_old}</TextCustom>
                                                             </View>
 
                                                             <View className="flex flex-row justify-between items-center w-full">
-                                                                <TextCustom  className="text-justify w-1/2">{va.product_change_unit_desc}</TextCustom>
                                                                 <TextCustomBold className="w-1/2">توضیحات</TextCustomBold>
+                                                                <TextCustom  className="text-justify w-1/2">{va.product_change_unit_desc}</TextCustom>
                                                             </View>
                                                             <View className="flex flex-row justify-between items-center w-full">
-                                                                <TextCustom className="w-1/2">{persianDateNT.date(va.product_change_unit_create_time)}</TextCustom>
                                                                 <TextCustomBold className="w-1/2">زمان جابجایی</TextCustomBold>
+                                                                <TextCustom className="text-left w-1/2">{persianDateNT.date(va.product_change_unit_create_time)}</TextCustom>
                                                             </View>
 
                                                         </View>
@@ -199,14 +196,6 @@ const showProduct = () => {
                                             </View>
                                         </View>
                                     }
-
-
-
-
-
-
-
-
                                 </View>
                             </View>
 

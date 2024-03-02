@@ -1,9 +1,9 @@
 import {router, Tabs, usePathname, useRouter, useSegments} from 'expo-router';
 import {useDispatch, useSelector} from "react-redux";
-import {useEffect} from "react";
+import React, {useEffect} from "react";
 import {Feather, Ionicons} from "@expo/vector-icons";
 import {Drawer} from "expo-router/drawer";
-import {Button, Pressable, StyleSheet, View} from 'react-native';
+import {Button, Image, Pressable, StyleSheet, View} from 'react-native';
 import {DrawerContentScrollView, DrawerItem, DrawerToggleButton} from "@react-navigation/drawer";
 import TextCustom from "../../../src/components/Text/TextCustom";
 import ItemDrawer from "../../../src/components/Drawer/ItemDrawer";
@@ -56,11 +56,22 @@ export default function DrawerLayout() {
                 <View className="h-screen relative">
                     <View className="flex flex-col justify-center items-center p-3 space-y-2">
                         <View className="w-20 h-20 bg-gray-700 rounded-full overflow-hidden">
-
+                            {Boolean(profile.image) && profile.image !== "null" ? (
+                                <Image className="w-20 h-20" source={{uri: `${Config.imageUrl + profile.image}`}}/>
+                            ) : (
+                                <View>
+                                    {profile && profile?.gender === "خانم"  ?
+                                        (<Image className="w-20 h-20" source={require('../../../assets/avator/logoWoman.png')}/>)
+                                        :
+                                        (<Image className="w-20 h-20" source={require('../../../assets/avator/logoMan.png')}/>)
+                                    }
+                                </View>
+                            )}
                         </View>
-                        <TextCustom>asdasdas</TextCustom>
+                        <TextCustom className="text-lg text-gray-600">{profile.name + " " + profile.family}</TextCustom>
+                        <TextCustom className="text-sm text-gray-600">{profile.role}</TextCustom>
                     </View>
-                    <View className="w-full flex p-3 space-y-1">
+                    <View className="w-full flex p-5 space-y-1">
                         <ItemDrawer title="صفحه اصلی" to="/" icon={<Ionicons name="home" color="black" size={24} />}/>
                         <ItemDrawer title="لیست کالا ها" to="/list" icon={<Ionicons name="list" color="black" size={24} />}/>
                         <ItemDrawer title="جستجو بارکد" to="/barcode" icon={<Ionicons name="search" color="black" size={24} />}/>
@@ -69,9 +80,9 @@ export default function DrawerLayout() {
                         <ItemDrawer title="اطلاعات برنامه" to="/about" icon={<Ionicons name="information-circle" size={24} color="black" />}/>
 
                         <View className="w-full mb-1">
-                            <Pressable onPress={()=>{clear()}} className="rounded-lg p-2 w-full flex flex-row justify-end items-center space-x-3">
-                                <TextCustom className="text-lg text-red-500">خروج</TextCustom>
+                            <Pressable onPress={()=>{clear()}} className="rounded-lg p-2 w-full flex flex-row items-center space-x-3">
                                 <Ionicons name="log-out" size={24} color="red" />
+                                <TextCustom className="text-lg text-red-500">خروج</TextCustom>
                             </Pressable>
                         </View>
 
@@ -102,32 +113,32 @@ export default function DrawerLayout() {
         <Drawer   screenOptions={{
             drawerPosition: 'right',
             headerShown : false,
-            headerLeft: () => null,
+            headerRight: () => null,
             headerTitleAlign : "center",
             headerTitle: props => <View><TextCustomBold className="text-lg text-gray-600">{props.children}</TextCustomBold></View>,
         }} drawerContent={props => <CustomDrawerContent {...props} />} >
 
             <Drawer.Screen  name="(tab)" options={{
                 title: "ٌصفحه اصلی",
-                headerRight : ()=><DrawerToggleButton />,
+                headerLeft : ()=><DrawerToggleButton />,
                 headerShown : false,
             }}/>
 
             <Drawer.Screen  name="product/addProduct" options={{
                 title: "کالا",
-                headerRight : ()=><DrawerToggleButton />,
+                headerLeft : ()=><DrawerToggleButton />,
                 headerShown : true,
             }}/>
 
             <Drawer.Screen  name="product/showProduct" options={{
                 title: "جزئیات کالا",
-                headerRight : ()=><DrawerToggleButton />,
+                headerLeft : ()=><DrawerToggleButton />,
                 headerShown : true,
             }}/>
 
             <Drawer.Screen  name="about" options={{
                 title: "اطلاعات برنامه",
-                headerRight : ()=><DrawerToggleButton />,
+                headerLeft : ()=><DrawerToggleButton />,
                 headerShown : true,
             }}/>
 

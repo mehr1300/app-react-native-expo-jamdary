@@ -33,14 +33,14 @@ const SelectOption = ({formik,formikAddress,name,title,options,defaultTitle = "Ø
 
     return (
         <View className="w-full">
-
+            <TextCustom>{title}</TextCustom>
             <TouchableHighlight className="w-full" onPress={()=>setModal({...modal,show : true})} underlayColor="white">
-                <View className={`bg-gray-100 flex flex-row space-x-2 rounded p-2 w-full justify-between items-end border border-gray-400`}>
-                    <Entypo name="chevron-left" size={20} color="gray" />
+                <View className={`bg-gray-100 flex flex-row space-x-2 rounded p-2 w-full justify-between border border-gray-400`}>
                    <View className="">
                        <TextCustom className="text-gray-600">{modal.data ? modal.data.label : defaultTitle}</TextCustom>
                        <TextInput className="hidden text-white">{modal.data ? modal.data.value : defaultValue}</TextInput>
                    </View>
+                    <Entypo name="chevron-left" size={20} color="gray" />
                 </View>
             </TouchableHighlight>
 
@@ -52,14 +52,16 @@ const SelectOption = ({formik,formikAddress,name,title,options,defaultTitle = "Ø
                 <View className="w-full flex-1 justify-center items-center p-6 rounded bg-white/70">
                     <View className="bg-gray-200 rounded-2xl p-6 w-full flex flex-col space-y-3 border-2 border-gray-100">
                         <View className="flex flex-row justify-between items-center">
-                            <AntDesign onPress={()=>setModal({...modal,show : false})} name="closesquareo" size={24} color="black" />
                             <TextCustom className=" text-gray-700 text-lg">{title}</TextCustom>
+                            <TouchableHighlight  onPress={()=>setModal({...modal,show : false})} underlayColor="white">
+                                <AntDesign name="closesquareo" size={24} color="black" />
+                            </TouchableHighlight>
                         </View>
                         <ScrollView className="flex flex-col space-y-2">
                             {options && options?.length > 0 && options?.map((value,index)=>{
                                 return (
                                     <TouchableHighlight className="w-full" key={index} onPress={()=>select(value)} underlayColor="white">
-                                        <View className={`border border-gray-400 flex flex-row space-x-2 rounded p-2 w-full justify-end items-end`}>
+                                        <View className={`border border-gray-400 flex flex-row space-x-2 rounded p-2 w-full `}>
                                             <TextCustom className="text-gray-700">{value.label}</TextCustom>
                                         </View>
                                     </TouchableHighlight>

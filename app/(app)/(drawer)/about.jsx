@@ -18,31 +18,37 @@ const About = () => {
     return (
         <SafeAreaView>
             <ScrollView className="p-2">
-                <View className="flex-1 p-3 text-right justify-center items-end space-y-3">
+                <View className="flex-1 p-3 text-right justify-center space-y-3">
                     <View className="flex flex-row space-x-1">
-                        <TextCustom className="text-lg">{aboutLicenseState.software?.software_name}</TextCustom>
                         <TextCustomBold className="text-lg text-gray-600">نام نرم افزار :</TextCustomBold>
+                        <TextCustom className="text-lg">{aboutLicenseState.software?.software_name}</TextCustom>
                     </View>
                     <View className="flex flex-row space-x-1">
-                        <TextCustom className="text-lg">{Config.version}</TextCustom>
                         <TextCustomBold className="text-lg text-gray-600">ورژن برنامه شما :</TextCustomBold>
+                        <TextCustom className="text-lg">{Config.version}</TextCustom>
                     </View>
                     {
                         aboutLicenseState.software?.web_version !== "" && aboutLicenseState.software?.web_version !== null &&
                         aboutLicenseState.software?.web_version === Config.version ?
                             (
-                                <TextCustom className="text-white bg-emerald-500 p-1 rounded-md">شما در حال استفاده اخرین نسخه برنامه هستید</TextCustom>)
+                                <View className="bg-red-500 p-1 rounded-md text-white w-72 flex items-center justify-center">
+                                    <TextCustom className="text-white bg-emerald-500 p-1 rounded-md">شما در حال استفاده اخرین نسخه برنامه هستید</TextCustom>
+                                </View>
+                                )
                             :
                             (
-                                <TextCustom className="text-white bg-red-500 p-1 rounded-md">نسخه ی {aboutLicenseState.software?.web_version} ارائه شده است</TextCustom>)
+                                <View className="bg-red-500 p-1 rounded-md text-white w-72 flex items-center justify-center">
+                                    <TextCustom className="text-white bg-red-500 p-1 rounded-md">نسخه ی {aboutLicenseState.software?.web_version} ارائه شده است</TextCustom>
+                                </View>
+                            )
                     }
                     <View className="flex flex-row space-x-1">
-                        <TextCustom className="text-lg">{aboutLicenseState.software?.software_level_title}</TextCustom>
                         <TextCustomBold className="text-lg text-gray-600">نام لایسنس :</TextCustomBold>
+                        <TextCustom className="text-lg">{aboutLicenseState.software?.software_level_title}</TextCustom>
                     </View>
                     <View className="flex flex-row space-x-1">
-                        <TextCustom className="text-lg">{aboutLicenseState.software?.app_buyer_name}</TextCustom>
                         <TextCustomBold className="text-lg text-gray-600">شرکت خریدار :</TextCustomBold>
+                        <TextCustom className="text-lg">{aboutLicenseState.software?.app_buyer_name}</TextCustom>
                     </View>
                     {aboutLicenseState.software?.end_of_support_date_status !== "" && aboutLicenseState.software?.end_of_support_date_status !== null &&
                         aboutLicenseState.software?.end_of_support_date_status === "inactive" &&
@@ -53,17 +59,17 @@ const About = () => {
 
                     {aboutLicenseState.software?.software_site_url !== "" &&
                         <View className="flex flex-row items-center gap-2">
+                            <TextCustomBold className={` text-lg`}>وب سایت :</TextCustomBold>
                             <Pressable onPress={()=>{return router.push(aboutLicenseState.software?.software_site_url)}} >
                                 <TextCustom  className="text-blue-600 dark:text-blue-400 text-lg">{aboutLicenseState.software?.software_site_title}</TextCustom>
                             </Pressable>
-                            <TextCustomBold className={` text-lg`}>وب سایت :</TextCustomBold>
                         </View>
 
                     }
                     {aboutLicenseState.software?.software_support_phone !== "" &&
                         <View className="flex flex-row gap-2">
-                            <TextCustom className={`text-lg`}>{aboutLicenseState.software?.software_support_phone}</TextCustom>
                             <TextCustomBold className={`  text-lg`}>تلفن پشتیبانی :</TextCustomBold>
+                            <TextCustom className={`text-lg`}>{aboutLicenseState.software?.software_support_phone}</TextCustom>
                         </View>
 
                     }
@@ -71,6 +77,7 @@ const About = () => {
                     <View className="flex flex-row items-center gap-3">
 
                         <View className="flex flex-row items-center gap-3">
+                            <TextCustomBold className="text-lg">پشتیبانی:</TextCustomBold>
                             {aboutLicenseState.software?.software_support_bale !== null && aboutLicenseState.software?.software_support_bale !== "" &&
                                 <Pressable onPress={()=>{return router.push(aboutLicenseState.software?.software_support_bale)}} >
                                     <Image className="w-8 h-8" source={require('../../../assets/icons/bale-100.png')}/>
@@ -88,7 +95,7 @@ const About = () => {
                                     <Image className="w-8 h-8" source={require('../../../assets/icons/Telegram-100.png')}/>
                                 </Pressable >
                             }
-                            <TextCustomBold className="text-lg">پشتیبانی:</TextCustomBold>
+
                         </View>
                     </View>
                     <View>

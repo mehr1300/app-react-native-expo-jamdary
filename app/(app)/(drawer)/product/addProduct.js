@@ -4,7 +4,7 @@ import TextCustom from "../../../../src/components/Text/TextCustom";
 import {useDispatch, useSelector} from "react-redux";
 import {clearLogin, loginUser, postAsyncLogin} from "../../../../src/features/redux/loginSlice";
 import {Formik, useFormik} from "formik";
-import {Button, Modal, SafeAreaView, ScrollView, TextInput, ToastAndroid, View} from "react-native";
+import {ActivityIndicator, Button, Modal, SafeAreaView, ScrollView, TextInput, ToastAndroid, View} from "react-native";
 import {getAsyncGroupListSelect} from "../../../../src/features/redux/groupSlice";
 import {getAsyncStatusSelect} from "../../../../src/features/redux/statusSlice";
 import SelectOption from "../../../../src/components/SelectOption/SelectOption";
@@ -74,10 +74,11 @@ const addProduct = () => {
         enableReinitialize : true
     });
 
-    useEffect(() => {
-        dispatch(getAsyncCategorySelect({product_group_id: formik.values.product_group_id}))
-    }, [formik.values.product_group_id])
-
+    useFocusEffect(
+        React.useCallback(() => {
+            dispatch(getAsyncCategorySelect({product_group_id: formik.values.product_group_id}))
+        }, [formik.values.product_group_id])
+    );
 
     const showToastWithGravityAndOffset = (message) => {
         ToastAndroid.showWithGravityAndOffset(
@@ -112,7 +113,11 @@ const addProduct = () => {
 
     return (
         <>
-            {loadingShow   && <LoadingOne/>}
+            {loadingShow   &&
+                <View className="flex flex-1 justify-center items-center">
+                    <ActivityIndicator size="large" style={{ transform: [{ scaleX: 2 }, { scaleY: 2 }] }} color="#0000ff" />
+                </View>
+            }
             {!loadingShow && (
                 <SafeAreaView>
                     <ScrollView className="p-5">
@@ -130,22 +135,18 @@ const addProduct = () => {
                                     <TextInputCustomOne name="product_name" title="نام محصول" formik={formik}/>
                                 </View>
                                 <View>
-                                    <TextCustom>گروه محصول</TextCustom>
                                     <SelectOption formikAddress={formik.values.product_group_id} name="product_group_id" title="گروه کالا" options={groupListSelect} formik={formik}/>
                                 </View>
 
                                 <View>
-                                    <TextCustom>دسته محصول</TextCustom>
                                     <SelectOption formikAddress={formik.values.product_group_id} name="product_category_id" title="دسته محصول" options={categoryListSelect} formik={formik}/>
                                 </View>
 
                                 <View>
-                                    <TextCustom>وضعیت محصول</TextCustom>
                                     <SelectOption formikAddress={formik.values.product_group_id} name="product_status_id" title="وضعیت محصول" options={statusListSelect} formik={formik}/>
                                 </View>
 
                                 <View>
-                                    <TextCustom> کارمند - انبار</TextCustom>
                                     <SelectOption formikAddress={formik.values.product_group_id} name="receiver_user_id"  title=" کارمند - انبار" options={organizationUserInAddProduct} formik={formik}/>
                                 </View>
                                 <View>
@@ -157,15 +158,15 @@ const addProduct = () => {
                                 </View>
 
                                 <View>
-                                    <TextInputCustomOne name="bought_status" title="وضعیت در زمان خرید" formik={formik}/>
+                                    <SelectOption formikAddress={formik.values.bought_status} name="bought_status" title="وضعیت در زمان خرید" options={boughtStatus} formik={formik}/>
                                 </View>
 
                                 <View>
-                                    <TextInputCustomOne name="bought_time" title="زمان نسبی خرید" formik={formik}/>
+                                    <DatePickerOne name="bought_time" title="زمان خرید" formik={formik} formikAddress={formik.values.bought_time} />
                                 </View>
 
                                 <View>
-                                    <TextInputCustomOne name="bought_garanting_finish_time" title="زمان اتمام گارانتی " formik={formik}/>
+                                    <DatePickerOne name="bought_garanting_finish_time" title="زمان اتمام گارانتی " formik={formik} formikAddress={formik.values.bought_garanting_finish_time} />
                                 </View>
 
                             </View>
@@ -186,13 +187,16 @@ const addProduct = () => {
 import {
     clearProductSlice,
     clearResultProduct,
-    getAsyncProduct, postAsyncProduct,
+    getAsyncProduct, getAsyncProductList, postAsyncProduct,
     searchAsyncProductAdd
 } from "../../../../src/features/redux/productSlice";
 import {getAsyncCategorySelect} from "../../../../src/features/redux/categorySlice";
 
 
 import LoadingOne from "../../../../src/components/Animation/LoadingOne";
+import DatePickerOne from "../../../../src/components/DatePicker/DatePickerOne";
+import {useFocusEffect} from "@react-navigation/native";
+import {boughtStatus} from "../../../../assets/data/data";
 
 export default addProduct;
 
