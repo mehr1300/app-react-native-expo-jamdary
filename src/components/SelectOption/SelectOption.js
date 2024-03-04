@@ -19,7 +19,6 @@ const SelectOption = ({formik,formikAddress,name,title,options,defaultTitle = "Ø
                 const get = options.find((item) => item.value === formikAddress)
                 if (get !== undefined) {
                     setModal({show: false , data : get })
-
                 }
             } else {
                 const get = options.find((item, index) => index === 0)

@@ -66,7 +66,7 @@ const DatePickerOne = ({title,name,formik,formikAddress}) => {
                                 <AntDesign name="closesquareo" size={24} color="black" />
                             </TouchableHighlight>
                         </View>
-                        <Calendar value={modal.data}  onChange={(date) => selectDate(date)} />
+                        <Calendar value={modal.data}  minDate="1380/01/01" maxDate="1412/12/29" onChange={(date) => selectDate(date)} />
                     </View>
                 </View>
             </Modal>

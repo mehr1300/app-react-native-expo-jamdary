@@ -12,7 +12,7 @@ import {addChangeCodeProduct, clearChangeCodePro} from "../../features/redux/cod
 
 const ModalChangeCode = ({data,refresh,title,classCustom = "bg-emerald-400 border-emerald-500",icon = false}) => {
     const [modal,setModal] = useState({show: false , data : false})
-    const {getCode, changeCode} = useSelector(state => state.code)
+    const {getCode, changeCode,loading} = useSelector(state => state.code)
     const dispatch = useDispatch();
 
     const initialValues = {
@@ -34,7 +34,8 @@ const ModalChangeCode = ({data,refresh,title,classCustom = "bg-emerald-400 borde
         initialValues: initialValues,
         onSubmit: onSubmit,
         validationSchema: validationSchema,
-        enableReinitialize : true
+        enableReinitialize : true,
+        validateOnMount : true
     });
 
     const showToastWithGravityAndOffset = (message) => {
@@ -54,7 +55,6 @@ const ModalChangeCode = ({data,refresh,title,classCustom = "bg-emerald-400 borde
                 dispatch(clearChangeCodePro())
                 setTimeout(() => {
                     refresh(formik.values.new_product_code)
-                    console.log(formik.values.new_product_code)
                     setModal({...modal,show : false})
                 }, 500)
             } else {
@@ -66,7 +66,7 @@ const ModalChangeCode = ({data,refresh,title,classCustom = "bg-emerald-400 borde
 
     return (
         <View className="">
-            <TouchableHighlight className="w-40" onPress={()=>setModal({...modal,show : true})} underlayColor="white">
+            <TouchableHighlight className="w-40" onPress={()=>setModal({...modal,show : true})}onPress={()=>setModal({...modal,show : true})} underlayColor="white">
                 <View className={`${classCustom} flex flex-row space-x-2 rounded p-1 px-3 justify-center items-center border`}>
                     {icon}
                     <TextCustom className=" text-gray-700 text-base">{title}</TextCustom>
@@ -81,22 +81,22 @@ const ModalChangeCode = ({data,refresh,title,classCustom = "bg-emerald-400 borde
                 <View className="w-full flex-1 justify-center items-center p-6 rounded bg-white/70">
                     <View className="bg-gray-200 rounded-2xl p-6 w-full flex flex-col space-y-3 border-2 border-gray-100">
                         <View className="flex flex-row justify-between items-center">
-                            <AntDesign onPress={()=>setModal({...modal,show : false})} name="closesquareo" size={24} color="black" />
                             <TextCustom className=" text-gray-700 text-lg">{title}</TextCustom>
+                            <AntDesign onPress={()=>setModal({...modal,show : false})} name="closesquareo" size={24} color="black" />
                         </View>
                         <ScrollView className="flex flex-col space-y-5">
                             <TextCustom className="text-yellow-600">این اطلاعات جهت مشاهده می باشد و برای ویرایش به
                                 پایین صحفه مراجعه کنید
                             </TextCustom>
                             <View className="border-b-2 border-emerald-600 pb-5">
-                                <View className="flex flex-col space-y-3 justify-center items-end">
-                                    <View className={`flex flex-row justify-center items-center space-x-3 dark:text-white`}>
-                                        <TextCustom className="" >{data.product_name}</TextCustom>
+                                <View className="flex flex-col space-y-3">
+                                    <View className={`flex flex-row space-x-3 dark:text-white`}>
                                         <TextCustomBold className='text-emerald-600 '>نام کالا :</TextCustomBold>
+                                        <TextCustom className="" >{data.product_name}</TextCustom>
                                     </View>
-                                    <View className={`flex flex-row justify-center items-center space-x-3 dark:text-white`}>
-                                        <TextCustom className="">{data.product_code}</TextCustom>
+                                    <View className={`flex flex-row space-x-3 dark:text-white`}>
                                         <TextCustomBold className='text-emerald-600 '>کد قبلی :</TextCustomBold>
+                                        <TextCustom className="">{data.product_code}</TextCustom>
 
                                     </View>
                                 </View>
@@ -104,11 +104,11 @@ const ModalChangeCode = ({data,refresh,title,classCustom = "bg-emerald-400 borde
 
                             <View className="w-full flex flex-col space-y-5">
                                 <View className="w-full flex flex-col space-y-2">
-                                    <TextInputCustomOne title="کد جدید" name="product_code_new" formik={formik}/>
+                                    <TextInputCustomOne number={true} title="کد جدید" name="product_code_new" formik={formik}/>
                                     <TextInputCustomOne title="توضیحات" name="product_change_code_desc" formik={formik}/>
                                 </View>
                                 <View className="w-full ">
-                                    <ButtonCustomOne title="ثبت تغییر کد" operator={formik.handleSubmit}/>
+                                    <ButtonCustomOne formik={formik} title="ثبت تغییر کد" operator={formik.handleSubmit} loading={loading}/>
                                 </View>
                             </View>
                         </ScrollView>

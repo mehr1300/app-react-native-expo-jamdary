@@ -10,10 +10,10 @@ import SelectOption from "../SelectOption/SelectOption";
 import TextInputCustomOne from "../TextInput/TextInputCustomOne";
 import ButtonCustomOne from "../Button/ButtonCustomOne";
 
-const ModalChangeUnit = ({data,refresh,title,classCustom = "bg-emerald-400 border-emerald-500",icon = false}) => {
+const ModalChangeUser = ({data,refresh,title,classCustom = "bg-emerald-400 border-emerald-500",icon = false}) => {
     const [modal,setModal] = useState({show: false , data : false})
     const dispatch = useDispatch()
-    const {changeUnitProduct, changeUnitProductUser,unitChangePro} = useSelector(state => state.product)
+    const {changeUnitProduct, changeUnitProductUser,unitChangePro,loading} = useSelector(state => state.product)
 
     const initialValues = {
         receiver_unit_old: data.receiver_unit,
@@ -94,17 +94,17 @@ const ModalChangeUnit = ({data,refresh,title,classCustom = "bg-emerald-400 borde
                                 پایین صحفه مراجعه کنید
                             </TextCustom>
                             <View className={`flex flex-col space-y-2`}>
-                                <View className={`flex flex-row justify-end items-center gap-1`}>
-                                    <TextCustom className="">{changeUnitProduct?.product_name }</TextCustom>
+                                <View className={`flex flex-row items-center gap-1`}>
                                     <TextCustomBold className=''>نام کالا: </TextCustomBold>
+                                    <TextCustom className="">{changeUnitProduct?.product_name }</TextCustom>
                                 </View>
-                                <View className={`flex flex-row justify-end items-center gap-1`}>
-                                    <TextCustom className="">{changeUnitProduct?.receiver_user_name}</TextCustom>
+                                <View className={`flex flex-row items-center gap-1`}>
                                     <TextCustomBold className=''>تحویل گیرنده : </TextCustomBold>
+                                    <TextCustom className="">{changeUnitProduct?.receiver_user_name}</TextCustom>
                                 </View>
-                                <View className={`flex flex-row justify-end items-center gap-1`}>
-                                    <TextCustom className="">{changeUnitProduct?.receiver_unit}</TextCustom>
+                                <View className={`flex flex-row items-center gap-1`}>
                                     <TextCustomBold className=''> واحد : </TextCustomBold>
+                                    <TextCustom className="">{changeUnitProduct?.receiver_unit}</TextCustom>
                                 </View>
                             </View>
                         </View>
@@ -112,11 +112,10 @@ const ModalChangeUnit = ({data,refresh,title,classCustom = "bg-emerald-400 borde
                         <View className="w-full flex flex-col space-y-5 mt-5">
                             <View className=" flex flex-col space-y-3 w-full">
                                <View>
-                                   <TextCustom>انتخاب (کارمند - انبار) جدید</TextCustom>
-                                   <SelectOption formikAddress={formik.values.receiver_user_id_new} name="receiver_user_id_new"  title="تحویل گیرنده جدید" options={changeUnitProductUser} formik={formik}/>
+                                   <SelectOption formikAddress={formik.values.receiver_user_id_new} name="receiver_user_id_new"  title="انتخاب (کارمند - انبار) جدید" options={changeUnitProductUser} formik={formik}/>
                                </View>
                                 <View>
-                                    <TextInputCustomOne title="نام واحد جدید" name="receiver_unit_new" formik={formik}/>
+                                    <TextInputCustomOne title="واحد جدید" name="receiver_unit_new" formik={formik}/>
                                 </View>
 
                                 <View>
@@ -124,7 +123,7 @@ const ModalChangeUnit = ({data,refresh,title,classCustom = "bg-emerald-400 borde
                                 </View>
                             </View>
                             <View className="w-full ">
-                                <ButtonCustomOne title="ثبت تغییر واحد" operator={formik.handleSubmit}/>
+                                <ButtonCustomOne formik={formik} title="ثبت تغییر واحد" operator={formik.handleSubmit} loading={loading}/>
                             </View>
                         </View>
 
@@ -137,4 +136,4 @@ const ModalChangeUnit = ({data,refresh,title,classCustom = "bg-emerald-400 borde
     );
 };
 
-export default ModalChangeUnit;
+export default ModalChangeUser;

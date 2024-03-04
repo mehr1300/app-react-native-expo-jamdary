@@ -6,7 +6,7 @@ import {useFonts} from "expo-font";
 import {SplashScreen} from "expo-router";
 const StyledTextInput = styled(TextInput)
 
-const TextInputCustomOne = ({formik,title,name,secureTextEntry=false , number =false}) => {
+const TextInputCustomMoney = ({formik,formikAddress,title,name,secureTextEntry=false}) => {
 
     const [fontsLoaded, fontError] = useFonts({
         yekanRegular: require("../../../assets/fonts/IRANYekanX-Regular.ttf"),
@@ -25,16 +25,26 @@ const TextInputCustomOne = ({formik,title,name,secureTextEntry=false , number =f
 
     const font = {fontFamily:'yekanRegular'}
 
+    const addCommas = num => num?.toString()?.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    const removeNonNumeric = num => num?.toString()?.replace(/[^0-9]/g, "");
+    const onKeyPressHandler = (e) => {
+        if (!/[0-9]/.test(e.key)) {
+            e.preventDefault();
+        }
+    }
+
     return (
         <View>
             <TextCustom>{title}</TextCustom>
-            <StyledTextInput keyboardType={number ? "numeric" : "default"} secureTextEntry={secureTextEntry} style={[font]} name={name}
+            <StyledTextInput secureTextEntry={secureTextEntry} style={[font]} name={name}
+
                              onChangeText={formik.handleChange(name)}
                              onBlur={formik.handleBlur(name)}
-                             value={formik.values[name]}
-                             className={`${formik.errors[name] && formik.touched[name] ? " border-red-500 " : " border-gray-400 " } border w-full p-1.5 rounded dark:text-gray-200 text-base`}/>
+                             value={addCommas(removeNonNumeric(formikAddress))}
+
+                             className="border border-gray-400 w-full p-1.5 rounded dark:text-gray-200 text-base"/>
         </View>
     );
 };
 
-export default TextInputCustomOne;
+export default TextInputCustomMoney;

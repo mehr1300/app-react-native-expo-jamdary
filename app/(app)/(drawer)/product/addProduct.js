@@ -71,7 +71,8 @@ const addProduct = () => {
         initialValues: product || initialValues,
         onSubmit: onSubmit,
         validationSchema: validationSchema,
-        enableReinitialize : true
+        enableReinitialize : true,
+        validateOnMount : true
     });
 
     useFocusEffect(
@@ -139,22 +140,22 @@ const addProduct = () => {
                                 </View>
 
                                 <View>
-                                    <SelectOption formikAddress={formik.values.product_group_id} name="product_category_id" title="دسته محصول" options={categoryListSelect} formik={formik}/>
+                                    <SelectOption formikAddress={formik.values.product_category_id} name="product_category_id" title="دسته محصول" options={categoryListSelect} formik={formik}/>
                                 </View>
 
                                 <View>
-                                    <SelectOption formikAddress={formik.values.product_group_id} name="product_status_id" title="وضعیت محصول" options={statusListSelect} formik={formik}/>
+                                    <SelectOption formikAddress={formik.values.product_status_id} name="product_status_id" title="وضعیت محصول" options={statusListSelect} formik={formik}/>
                                 </View>
 
                                 <View>
-                                    <SelectOption formikAddress={formik.values.product_group_id} name="receiver_user_id"  title=" کارمند - انبار" options={organizationUserInAddProduct} formik={formik}/>
+                                    <SelectOption formikAddress={formik.values.receiver_user_id} name="receiver_user_id"  title=" کارمند - انبار" options={organizationUserInAddProduct} formik={formik}/>
                                 </View>
                                 <View>
                                     <TextInputCustomOne name="receiver_unit" title="واحد" formik={formik}/>
                                 </View>
 
                                 <View>
-                                    <TextInputCustomOne name="product_price" title="قیمت کالا" formik={formik}/>
+                                    <TextInputCustomMoney formikAddress={formik.values.product_price} name="product_price" title="قیمت کالا" formik={formik} />
                                 </View>
 
                                 <View>
@@ -171,7 +172,7 @@ const addProduct = () => {
 
                             </View>
                             <View className="w-full ">
-                                <ButtonCustomOne title={product_id === "" ? "ثبت اطلاعات" : "ثبت ویرایش"} operator={formik.handleSubmit} color="bg-green-500"/>
+                                <ButtonCustomOne formik={formik} title={product_id === "" ? "ثبت اطلاعات" : "ثبت ویرایش"} operator={formik.handleSubmit} color="bg-green-500"/>
                             </View>
 
 
@@ -197,6 +198,7 @@ import LoadingOne from "../../../../src/components/Animation/LoadingOne";
 import DatePickerOne from "../../../../src/components/DatePicker/DatePickerOne";
 import {useFocusEffect} from "@react-navigation/native";
 import {boughtStatus} from "../../../../assets/data/data";
+import TextInputCustomMoney from "../../../../src/components/TextInput/TextInputCustomMoney";
 
 export default addProduct;
 

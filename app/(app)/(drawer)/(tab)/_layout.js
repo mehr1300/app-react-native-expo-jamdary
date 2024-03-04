@@ -29,7 +29,7 @@ export default function TabsLayout() {
             tabBarLabelStyle: {fontSize: 13, fontWeight: 'bold' ,paddingBottom :4},
             // headerShown : false,
             headerTitleAlign : "center",
-            headerTitle: props => <View><TextCustomBold className="text-gray-600">{props.children}</TextCustomBold></View>,
+            headerTitle: props => <View><TextCustomBold className="text-base text-gray-600">{props.children}</TextCustomBold></View>,
             tabBarActiveTintColor: 'white', // تغییر رنگ متن تب فعال
             tabBarInactiveTintColor: 'gray', // تغییر رنگ متن تب‌های غیرفعال
             tabBarActiveBackgroundColor: 'gray', // تغییر رنگ پس‌زمینه تب فعال

@@ -14,7 +14,7 @@ import Box from "../../../../src/components/Text/Box";
 import {persianDateNT} from "../../../../src/utility/persianDateNT";
 import TextCustomBold from "../../../../src/components/Text/TextCustomBold";
 import {formatNumber} from "../../../../src/utility/formatNumber";
-import ModalChangeUnit from "../../../../src/components/Product/ModalChangeUnit";
+import ModalChangeUser from "../../../../src/components/Product/ModalChangeUser";
 import ModalChangeCode from "../../../../src/components/Product/ModalChangeCode";
 import {FontAwesome5} from "@expo/vector-icons";
 import {useFocusEffect} from "@react-navigation/native";
@@ -86,7 +86,7 @@ const showProduct = () => {
                             </View>
 
                             {productAsyncPro.product_price !== "" && productAsyncPro.product_price !== null &&
-                                <View className="flex flex-col  justify-center bg-white p-2 py-4 border-t-4 border-emerald-600 rounded  w-full  dark:bg-slate-700
+                                <View className="flex flex-col items-start bg-white p-2 py-4 border-t-4 border-emerald-600 rounded  w-full  dark:bg-slate-700
                    dark:border-thPurpleWith-100 ">
                                     <Box title="قیمت" response={formatNumber(productAsyncPro.product_price)}/>
                                     <Box title="زمان خرید" response={productAsyncPro.bought_time}/>
@@ -144,7 +144,7 @@ const showProduct = () => {
                             <View className="flex flex-col  justify-center bg-white p-2 py-4 border-t-4 border-emerald-500 dark:bg-slate-700 rounded mt-5">
                                 <View className="flex flex-col space-y-5">
                                     <View className="flex flex-col space-y-3">
-                                        <ModalChangeUnit refresh={()=>router.back()} data={productAsyncPro} title="تغییر کارمند" name="productAsyncProUnit" icon={<FontAwesome5 name="exchange-alt" size={20} color="black" />}/>
+                                        <ModalChangeUser refresh={()=>router.back()} data={productAsyncPro} title="تغییر کارمند" name="productAsyncProUnit" icon={<FontAwesome5 name="exchange-alt" size={20} color="black" />}/>
                                         <TextCustomBold className="text-lg">
                                             تغییرات کارمند و واحد سازمانی :
                                         </TextCustomBold>

@@ -62,8 +62,8 @@ export default function login() {
     ]
 
     const initialValues = {
-        username: "mehr",
-        password: "123456"
+        username: "",
+        password: ""
     }
 
     const onSubmit = (values) => {
@@ -94,7 +94,7 @@ export default function login() {
                     <TextInputCustomOne secureTextEntry={true} title="رمز عبور" name="password" formik={formik}/>
                 </View>
                 <View className="w-full ">
-                    <ButtonCustomOne title="ورود" operator={formik.handleSubmit} loading={loading}/>
+                    <ButtonCustomOne formik={formik} title="ورود" operator={formik.handleSubmit} loading={loading}/>
                 </View>
             </View>
             <View className="w-full justify-center items-center pt-10">

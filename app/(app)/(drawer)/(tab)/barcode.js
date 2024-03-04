@@ -5,11 +5,11 @@ import TextInputCustom from "../../../../src/components/TextInput/TextInputCusto
 import {useDispatch, useSelector} from "react-redux";
 import {clearResultProduct, clearTypeProduct, searchAsyncProduct} from "../../../../src/features/redux/productSlice";
 import {Link, router, useSegments} from "expo-router";
-import LoadingOne from "../../../../src/components/Animation/LoadingOne";
 import {ActivityIndicator, Keyboard, View} from "react-native";
 import ButtonCustomOne from "../../../../src/components/Button/ButtonCustomOne";
 import {Feather} from "@expo/vector-icons";
 import ShowResultProduct from "../../../../src/components/Product/ShowResultProduct";
+import ButtonCustomTwo from "../../../../src/components/Button/ButtonCustomTwo";
 
 const barcode = () => {
 
@@ -40,7 +40,7 @@ const barcode = () => {
                     setBarcode(barcode)
                 }} keyboardType='numeric' className="border border-gray-400 w-full p-1.5 rounded"/>
                 <View className="w-full mt-3">
-                    <ButtonCustomOne title="جستجوی بارکد"
+                    <ButtonCustomTwo title="جستجوی بارکد"
                                      icon={<Feather name="search" size={24} color="white"/>}
                                      color="bg-blue-500" titleSize={26} operator={() => {
                         searchBarcode()

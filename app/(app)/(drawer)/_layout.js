@@ -115,7 +115,7 @@ export default function DrawerLayout() {
             headerShown : false,
             headerRight: () => null,
             headerTitleAlign : "center",
-            headerTitle: props => <View><TextCustomBold className="text-lg text-gray-600">{props.children}</TextCustomBold></View>,
+            headerTitle: props => <View><TextCustomBold className="text-base text-gray-600">{props.children}</TextCustomBold></View>,
         }} drawerContent={props => <CustomDrawerContent {...props} />} >
 
             <Drawer.Screen  name="(tab)" options={{
