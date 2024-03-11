@@ -1,11 +1,9 @@
 
-
-
 export const Config = {
-    api: "https://ntapi.ir/nilfam-tech-api-center/jamdary/api/interfaces/site/",
+    api: "https://api-jamdary.bidestansteel.com/api/interfaces/site/",
     apiLicense: "https://license.nilfamtech.com/interfaces/site/",
     linkSupportExtension:"https://nilfamtech.com/applicsation/payment/jamdary/",
-    imageUrl: "https://ntapi.ir/nilfam-tech-api-center/jamdary",
+    imageUrl: "https://api-jamdary.bidestansteel.com",
     helpPdf:"https://dl.jamdary.ir/files/jamdaryExampleList.rar",
     version: "2.1.0",
     loginTitle: "سامانه جمع داری",
